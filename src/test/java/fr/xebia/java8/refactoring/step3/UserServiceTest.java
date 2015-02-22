@@ -3,6 +3,7 @@ package fr.xebia.java8.refactoring.step3;
 import fr.xebia.java8.refactoring.data.Role;
 import fr.xebia.java8.refactoring.data.User;
 import fr.xebia.java8.refactoring.other.CurrentDate;
+import fr.xebia.java8.refactoring.step2.UserService;
 import org.assertj.core.api.Condition;
 import org.junit.Test;
 import org.junit.runner.RunWith;

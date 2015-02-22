@@ -1,4 +1,4 @@
-package fr.xebia.java8.refactoring.step3;
+package fr.xebia.java8.refactoring.step2;
 
 
 import fr.xebia.java8.refactoring.data.Role;
