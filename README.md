@@ -1,4 +1,3 @@
-PlayWithJava8
+functional-programming-java8
 =============
 
-[http://ibeauvais.github.io/PlayWithJava8](http://ibeauvais.github.io/PlayWithJava8)
