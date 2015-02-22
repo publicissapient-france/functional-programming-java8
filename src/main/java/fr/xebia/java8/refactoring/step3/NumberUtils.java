@@ -1,4 +1,4 @@
-package fr.xebia.java8.refactoring.step4;
+package fr.xebia.java8.refactoring.step3;
 
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
