@@ -1,4 +1,4 @@
-package fr.xebia.java8.refactoring.step2;
+package fr.xebia.java8.refactoring.step1;
 
 
 import fr.xebia.java8.refactoring.data.User;
