@@ -17,6 +17,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 * clone le repository git clone https://github.com/ibeauvais/PlayWithJava8.git
 
 -----------------
+
 ### 1 Play With basic collection enhancement
  **Refactorer le code java 7 en Java 8**  (Sans utiliser stream())
 
@@ -31,6 +32,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
  * [http://download.java.net/jdk8/docs/api/java/lang/Iterable.html](http://download.java.net/jdk8/docs/api/java/lang/Iterable.html)
 
 -----------------
+
 ### 2 Play with Collection Stream
  **Refactorer le code java 7 en Java 8**
 
@@ -44,6 +46,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
 
   -----------------
+
 ### 3 Play with others Stream
  **Refactorer le code java 7 en Java 8**
 
@@ -54,6 +57,7 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
   -----------------
 
 ### 4 Date and Time
+
 **Refactorer le code java 7 en Java 8**
 
 * Se connecter à la branche step1 :
