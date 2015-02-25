@@ -15,18 +15,9 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 * Avoir le jdk 8 dernière version d'installé
 * Avoir git
 * clone le repository git clone https://github.com/ibeauvais/PlayWithJava8.git
-### 1. Date and Time
-**Refactorer le code java 7 en Java 8**
-
-* Se connecter à la branche step1 :
-    `git checkout step1`
-* Modifier les méthodes de la classe DateUtils : Changer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
-* Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
-
-Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary.html](http://download.java.net/jdk8/docs/api/java/time/package-summary.html)
 
 -----------------
-### 2. Play With basic collection enhancement
+### 1 Play With basic collection enhancement
  **Refactorer le code java 7 en Java 8**  (Sans utiliser stream())
 
  * Se connecter à la branche step2 :
@@ -40,7 +31,7 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
  * [http://download.java.net/jdk8/docs/api/java/lang/Iterable.html](http://download.java.net/jdk8/docs/api/java/lang/Iterable.html)
 
 -----------------
-### 3. Play with Collection Stream
+### 2 Play with Collection Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step3 :
@@ -53,7 +44,7 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
   * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
 
   -----------------
-### 4. Play with others Stream
+### 3 Play with others Stream
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step4 :
@@ -61,7 +52,13 @@ Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary
  * Refactorer les class FileUtils.java et NumberUtils.java
 
   -----------------
-### 5. Play With new concurent Api
 
- * Se connecter à la branche step5 :
-      `git checkout step5`
+### 4 Date and Time
+**Refactorer le code java 7 en Java 8**
+
+* Se connecter à la branche step1 :
+    `git checkout step1`
+* Modifier les méthodes de la classe DateUtils : Changer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
+* Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
+
+Plus d'infos : [http://download.java.net/jdk8/docs/api/java/time/package-summary.html](http://download.java.net/jdk8/docs/api/java/time/package-summary.html)
