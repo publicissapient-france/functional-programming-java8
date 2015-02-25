@@ -18,6 +18,11 @@ Des commentaires avec des TODO sont la pour vous aiguiller.
 
 -----------------
 
+### 0 Discovery new function syntax
+ To be define
+
+-----------------
+
 ### 1 Play With basic collection enhancement
  **Refactorer le code java 7 en Java 8**  (Sans utiliser stream())
 
