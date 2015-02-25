@@ -1,7 +1,9 @@
 package fr.xebia.java8.refactoring.step0;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
+import java.util.List;
 import java.util.function.*;
 
 public class FunctionGenerator {
@@ -64,12 +66,32 @@ public class FunctionGenerator {
 
     //BinaryOperator is BiFunction with same generic type
     public static BinaryOperator<Integer> sumFunction() {
-        //TODO: replace with static methode reference
+        //TODO: replace with static method reference
         return new BinaryOperator<Integer>() {
 
             @Override
             public Integer apply(Integer firstValue, Integer secondValue) {
                 return Integer.sum(firstValue, secondValue);
+            }
+        };
+    }
+
+    public static Consumer<String> addToListConsumer(List<String> list) {
+        //TODO: replace with instance method reference
+        return new Consumer<String>() {
+            @Override
+            public void accept(String value) {
+                list.add(value);
+            }
+        };
+    }
+
+    public static Function<String, BigDecimal> stringToBiDecimalFunction() {
+        //TODO: replace with constructor reference
+        return new Function<String, BigDecimal>() {
+            @Override
+            public BigDecimal apply(String value) {
+                return new BigDecimal(value);
             }
         };
     }
