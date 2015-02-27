@@ -8,22 +8,34 @@ title: Refactoring fonctionnel avec Java 8
 Ce hands-on a pour objectif de vous faire coder en utilisant les nouvelles fonctionnalitées de java 8.
 
 Le principe est simple : des fonctionnalités ont été codées en java 7 à vous des les refactorer pour utiliser les améliorations de java 8.
+Par chance, toutes les méthodes à modifier sont couvertes par des tests qui passent en Java 7 et qui doivent évidement toujours passer une fois passé en Java 8.
 
-Des commentaires avec des TODO sont la pour vous aiguiller.
+Des commentaires avec des TODO dans le code sont la pour vous aiguiller.
 
 ### Pre-requis
 * Avoir le jdk 8 dernière version d'installé
 * Avoir git
-* clone le repository git clone https://github.com/ibeauvais/PlayWithJava8.git
+* Avoir maven
+* clone le repository git clone [https://github.com/xebia-france/functional-programming-java8.git](https://github.com/xebia-france/functional-programming-java8.git)
+
+Des clefs USB sont disponibles avec ces pre-requis.
 
 -----------------
 
-### 0 Discovery new function syntax
- To be define
+### (Optionel) Etape 0 Discovery new lambda syntax
+ Cette première étape permet de découvir la syntaxe de base des fonctions en Java 8. Si vous êtes déja à l'aise avec les **'Lambda'**, **'Static & Instance method reference'**, et **'Constructor reference'** vous pouvez passer directement à **[l'Etape 1](#step1)**.
+
+ Se connecter à la branche step 0 :
+     `git checkout step0`
+ * Ouvrir la classe **FunctionGenerator**. Cette classe permet de retourner des fonctions mais elle a été codée en Java 7, avec des classes anonymes. Modifier la pour utiliser la nouvelle syntaxe Java 8 des lambdas.
+
+ plus d'infos :
+
+ * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
 
 -----------------
 
-### 1 Play With basic collection enhancement
+### <a name="step1"></a>1 Play With basic collection enhancement
  **Refactorer le code java 7 en Java 8**  (Sans utiliser stream())
 
  * Se connecter à la branche step2 :
