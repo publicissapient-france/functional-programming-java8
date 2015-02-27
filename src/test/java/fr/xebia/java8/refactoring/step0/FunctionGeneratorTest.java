@@ -3,9 +3,7 @@ package fr.xebia.java8.refactoring.step0;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 import java.util.function.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -115,5 +113,17 @@ public class FunctionGeneratorTest {
 
         // Then
         assertThat(result).isEqualByComparingTo(BigDecimal.valueOf(1.246));
+    }
+
+    @Test
+    public void should_compare_by_string_size() {
+        // Given
+        String[] value = {"a", "bcde", "fg", "h", "ijklmn"};
+
+        // When
+        Arrays.sort(value, FunctionGenerator.byStringLengthComparator());
+
+        // Then
+        assertThat(value).containsExactly("a", "h", "fg", "bcde", "ijklmn");
     }
 }

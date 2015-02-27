@@ -3,6 +3,7 @@ package fr.xebia.java8.refactoring.step0;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.*;
 
@@ -64,7 +65,7 @@ public class FunctionGenerator {
         };
     }
 
-    //BinaryOperator is BiFunction with same generic type
+    // BinaryOperator is BiFunction with same generic type
     public static BinaryOperator<Integer> sumFunction() {
         //TODO: replace with static method reference
         return new BinaryOperator<Integer>() {
@@ -92,6 +93,17 @@ public class FunctionGenerator {
             @Override
             public BigDecimal apply(String value) {
                 return new BigDecimal(value);
+            }
+        };
+    }
+
+    // Comparator is also a FunctionalInterface that can be replaced by lambda syntax
+    public static Comparator<String> byStringLengthComparator() {
+        //TODO: replace with lambda syntax
+        return new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return Integer.compare(o1.length(), o2.length());
             }
         };
     }
