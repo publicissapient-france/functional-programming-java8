@@ -78,6 +78,13 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
       `git checkout step3`
  * Refactorer les class FileUtils.java et NumberUtils.java
 
+  plus d'infos :
+
+    * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
+    * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+    * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
+    * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step3-end' `
 
   -----------------
