@@ -12,7 +12,7 @@ import java.util.Map;
 public class BasicCollectionOperations {
 
     public static void resetPassword(List<User> users) {
-        //TODO :Refactor with forEach
+        //TODO :Refactor with forEach  method
 
         for (User user : users) {
             user.password = null;
@@ -20,7 +20,7 @@ public class BasicCollectionOperations {
     }
 
     public static void removeExpiredUsers(List<User> users) {
-        //TODO :Refactor with removeIf, use method reference
+        //TODO :Refactor with removeIf method and use method reference
 
         List<User> usersToRemove = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class BasicCollectionOperations {
     }
 
     public static void addOneDayToDates(List<LocalDate> localDates) {
-        //TODO :Refactor with replaceAll
+        //TODO :Refactor with replaceAll method
 
         for (int i = 0; i < localDates.size(); i++) {
             LocalDate localDate = localDates.get(i);
@@ -45,7 +45,7 @@ public class BasicCollectionOperations {
     }
 
     public static Map<String, Integer> countWord(List<String> words) {
-        //TODO :Refactor Map computation with merge and you can eventually change loop by forEach method
+        //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
         Map<String, Integer> count = new HashMap<>();
 
         for (String word : words) {
@@ -70,8 +70,6 @@ public class BasicCollectionOperations {
     }
 
     public static List<Long> fibonacci(int expectedNumberResult) {
-        //TODO: Unit test for fibonacci(45) is very slow. Optimize fibonacciComputation method with fibonacciValues map and computeIfAbsent
-
         List<Long> result = new ArrayList<>(expectedNumberResult);
 
         for (int i = 1; i <= expectedNumberResult; i++) {
@@ -81,6 +79,7 @@ public class BasicCollectionOperations {
         return result;
     }
 
+    //TODO: Unit test for fibonacci(45) is very slow. Optimize fibonacciComputation method with fibonacciValues map and computeIfAbsent
     private static long fibonacciComputation(int number) {
         if (number < 2) {
             return number;
