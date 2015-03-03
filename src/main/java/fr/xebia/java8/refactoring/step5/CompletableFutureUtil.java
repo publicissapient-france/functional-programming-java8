@@ -6,46 +6,49 @@ import java.util.concurrent.*;
 
 public class CompletableFutureUtil {
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        new CompletableFutureUtil().getProductsInformations();
-        new CompletableFutureUtil().getProductsInformationsAsync();
-    }
-
-    private void getProductsInformations() throws ExecutionException, InterruptedException {
-        long startTime = System.nanoTime();
-
+    public Merchant executeMerchant() throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(10);
 
-        Future<List<Product>> products = executor.submit(this::getProducts);
-        Future<List<Float>> stocks = executor.submit(this::getStocks);
-
-        products.get();
-        stocks.get();
-
-        long elapsedTime = System.nanoTime() - startTime;
-        System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
-
-    }
-
-    private void getProductsInformationsAsync() throws ExecutionException, InterruptedException {
         long startTime = System.nanoTime();
 
-        ExecutorService executor = Executors.newFixedThreadPool(10);
+        Future<List<Product>> products = executor.submit(this::initProducts);
+        Future<List<Integer>> stocks = executor.submit(this::initStocks);
 
-        CompletableFuture<List<Product>> products = CompletableFuture.supplyAsync(this::getProducts, executor);
-
-        products.thenApplyAsync(stocks -> getStocks(), executor);
+        Merchant merchant = new Merchant(products.get(), stocks.get());
 
         long elapsedTime = System.nanoTime() - startTime;
-        System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
+        System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms with future");
 
+        return merchant;
     }
 
-    private List<Product> getProducts() {
-        return new ArrayList<>();
+    public Merchant executeMerchantAsync() throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newFixedThreadPool(10);
+
+        long startTime = System.nanoTime();
+
+        CompletableFuture<List<Product>> products = CompletableFuture.supplyAsync(this::initProducts, executor);
+        CompletableFuture<List<Integer>> stocks = CompletableFuture.supplyAsync(this::initStocks, executor);
+
+        Merchant merchant = products.thenCombine(stocks, Merchant::new).get();
+
+        long elapsedTime = System.nanoTime() - startTime;
+        System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms with completable future");
+
+        return merchant;
     }
 
-    private List<Float> getStocks() {
-        return new ArrayList<>();
+    private List<Product> initProducts() {
+        List<Product> products = new ArrayList<>();
+        products.add(new Product(1, "name1", "description1"));
+
+        return products;
+    }
+
+    private List<Integer> initStocks() {
+        List<Integer> stocks = new ArrayList<>();
+        stocks.add(100);
+
+        return stocks;
     }
 }
