@@ -6,8 +6,6 @@ import fr.xebia.java8.refactoring.data.User;
 import fr.xebia.java8.refactoring.other.UserParser;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class UserService {
 
@@ -59,8 +57,7 @@ public class UserService {
     }
 
     /**
-     *
-     * @return  a copy of users list ordered by lastname and firstname
+     * @return a copy of users list ordered by lastname and firstname
      */
     public List<User> findAll() {
         //TODO: replace specific comparator with 'Comparator static methods' and collect with Collectors
