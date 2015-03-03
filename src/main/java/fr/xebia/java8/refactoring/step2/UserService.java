@@ -16,7 +16,6 @@ public class UserService {
 
     public UserService() {
         users = UserParser.fromCsv("users.csv");
-
     }
 
     public UserService(List<User> users) {
@@ -24,7 +23,7 @@ public class UserService {
     }
 
     public long countUserWithRole(Role role) {
-        //TODO: use filter and count
+        //TODO: convert user List to stream and use filter and count
         long count = 0;
         for (User user : users) {
             if (user.getRole() == role) {
@@ -60,12 +59,11 @@ public class UserService {
     }
 
     /**
-     * Return a copy of users list ordered by lastname and firstname
      *
-     * @return
+     * @return  a copy of users list ordered by lastname and firstname
      */
     public List<User> findAll() {
-        //TODO: replace specific comparator by Comparator static methods and collect with Collectors
+        //TODO: replace specific comparator with 'Comparator static methods' and collect with Collectors
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
 
