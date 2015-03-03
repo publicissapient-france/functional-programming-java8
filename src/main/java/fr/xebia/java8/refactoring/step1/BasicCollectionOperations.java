@@ -60,7 +60,6 @@ public class BasicCollectionOperations {
         return count;
     }
 
-
     private static Map<Integer, Long> fibonacciValues = new HashMap<>();
 
     static {
@@ -87,5 +86,4 @@ public class BasicCollectionOperations {
             return fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
         }
     }
-
 }
