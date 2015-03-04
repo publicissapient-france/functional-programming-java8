@@ -104,3 +104,22 @@ Plus d'infos :
  * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
  * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
  * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
+
+  -----------------
+
+ ### 5 CompletableFuture
+
+ **Refactorer le code java 7 en Java 8**
+
+ * Se connecter à la branche step5 :
+ `git checkout step5`
+ * Exécuter le test **MerchantTest** pour voir le temps de réponse de la méthode **executeMerchant**
+ * L'utilisation des Futures en Java 7 implique des appels bloquants. En effet, les appels à **products.get()** et **stocks.get()** sont séquentiels. Java 8 nous permet de paralléliser ces appels plus facilement.
+ * Implémenter la méthode **executeMerchantAsync** en utilisant le type **CompletableFuture**
+ * Utiliser la méthode **supplyAsync** pour retrouver les produits et les stocks avec les méthodes **initProducts** et **initStocks**
+ * Utiliser la méthode **thenCombine** pour enchaîner les appels et retourner un **Merchant**
+
+ Plus d'infos :
+
+ * [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
