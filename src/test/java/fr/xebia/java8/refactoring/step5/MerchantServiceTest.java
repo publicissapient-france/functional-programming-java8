@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MerchantTest {
+public class MerchantServiceTest {
 
     private MerchantService merchantService;
 
