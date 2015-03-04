@@ -109,7 +109,6 @@ Plus d'infos :
 
 ### 5 CompletableFuture
  
-
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step5 :
