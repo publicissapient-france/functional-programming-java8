@@ -8,6 +8,9 @@ public class Merchant {
 
     private List<Integer> stocks;
 
+    public Merchant() {
+    }
+
     public Merchant(final List<Product> products, final List<Integer> stocks) {
         this.products = products;
         this.stocks = stocks;

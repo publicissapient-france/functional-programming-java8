@@ -27,15 +27,13 @@ public class CompletableFutureUtil {
 
         long startTime = System.nanoTime();
 
-        CompletableFuture<List<Product>> products = CompletableFuture.supplyAsync(this::initProducts, executor);
-        CompletableFuture<List<Integer>> stocks = CompletableFuture.supplyAsync(this::initStocks, executor);
-
-        Merchant merchant = products.thenCombine(stocks, Merchant::new).get();
+        // TODO Call initProducts and initStocks with CompletableFuture
+        // TODO Combine the CompletableFutures and create a Merchant in one call
 
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms with completable future");
 
-        return merchant;
+        return new Merchant();
     }
 
     private List<Product> initProducts() {
