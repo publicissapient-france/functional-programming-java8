@@ -107,7 +107,8 @@ Plus d'infos :
 
   -----------------
 
- ### 5 CompletableFuture
+### 5 CompletableFuture
+ 
 
  **Refactorer le code java 7 en Java 8**
 
