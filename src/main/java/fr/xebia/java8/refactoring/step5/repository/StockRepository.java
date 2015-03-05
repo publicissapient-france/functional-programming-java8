@@ -9,6 +9,9 @@ public enum StockRepository {
     public List<Integer> initStocks() {
         List<Integer> stocks = new ArrayList<>();
         stocks.add(100);
+
+        FakeRepositoryTools.waitInSecond(1);
+
         return stocks;
     }
 }
