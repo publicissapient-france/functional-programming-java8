@@ -35,7 +35,7 @@ public class MerchantServiceTest {
 
     @Test
     public void should_execute_retrieveProductByCategories() throws Exception {
-        Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategories();
+        Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategoriesResult();
 
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());

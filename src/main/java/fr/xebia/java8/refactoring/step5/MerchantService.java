@@ -3,17 +3,17 @@ package fr.xebia.java8.refactoring.step5;
 import fr.xebia.java8.refactoring.step5.repository.ProductRepository;
 import fr.xebia.java8.refactoring.step5.repository.StockRepository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
+import java.util.stream.Stream;
 
 import static java.util.concurrent.CompletableFuture.supplyAsync;
 
 public class MerchantService {
 
-    private ExecutorService executor = Executors.newSingleThreadExecutor();
+    private ExecutorService executor = Executors.newFixedThreadPool(5);
 
     private ProductRepository productRepository = ProductRepository.CURRENT;
 
@@ -52,15 +52,18 @@ public class MerchantService {
 
     public Map<Product.Category, List<Product>> retrieveProductByCategoriesResult() throws ExecutionException, InterruptedException {
         long startTime = System.nanoTime();
-        Map<Product.Category, List<Product>> productsByCategories = new HashMap<>();
-        List<CompletableFuture<List<Product>>> completableFutures = new ArrayList<>(Product.Category.values().length);
-        for (Product.Category category : Product.Category.values()) {
-            CompletableFuture<List<Product>> productsByCategory = supplyAsync(() -> productRepository.productsByCategory(category));
-            productsByCategory.thenAccept((val) -> productsByCategories.put(category, val));
-            completableFutures.add(productsByCategory);
+        Map<Product.Category, List<Product>> productsByCategories = new ConcurrentHashMap<>();
 
-        }
-        CompletableFuture.allOf(completableFutures.toArray(new CompletableFuture[completableFutures.size()])).get();
+        CompletableFuture<Void> tasks = CompletableFuture.allOf(Stream.of(Product.Category.values())
+                .map(category -> {
+                    CompletableFuture<List<Product>> productsByCategory = supplyAsync(() -> productRepository.productsByCategory(category),executor);
+                    productsByCategory.thenAccept(val -> productsByCategories.put(category, val));
+                    return productsByCategory;
+                }).toArray(CompletableFuture[]::new));
+
+
+         tasks.get();
+
         long elapsedTime = System.nanoTime() - startTime;
         System.out.println(TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms with CompletableFuture future");
 
