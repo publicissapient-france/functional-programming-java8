@@ -1,10 +1,9 @@
 package fr.xebia.java8.refactoring.step5;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import java.util.List;
 import java.util.Map;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -35,7 +34,15 @@ public class MerchantServiceTest {
 
     @Test
     public void should_execute_retrieveProductByCategories() throws Exception {
-        Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategoriesResult();
+        Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategories();
+
+        assertThat(productByCategories.size()).isEqualTo(5);
+        assertThat(productByCategories.keySet()).contains(Product.Category.values());
+    }
+
+    @Test
+    public void should_execute_retrieveProductByCategoriesAsync() throws Exception {
+        Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategoriesAsync();
 
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());
