@@ -28,7 +28,37 @@ Des clefs USB sont disponibles avec ces pre-requis.
 
  * Se connecter à la branche step 0 :
      `git checkout step0`
+
  * Ouvrir la classe **FunctionGenerator**. Cette classe permet de retourner des fonctions mais elle a été codée en Java 7, avec des classes anonymes. Modifier la pour utiliser la nouvelle syntaxe Java 8 des lambdas.
+
+<blockquote class = 'help' markdown="1">
+
+En Java 7, la notion de fonction pouvait être implémentée sous la forme d'une classe anonyme
+avec une seule méthode d'instance.  
+Par exemple la classe **Function** (Disponible avec la librairie guava en Java < 8) avec une méthode **'apply'** qui prend 1 object en entrée et
+ retourne 1 object en sortie.  
+ Avec la syntaxe lambda une fonction prenant une chaîne de caractêre en entrée et qui
+retourne sa taille peut s'écrire :
+{% highlight java %}
+//Lambda version longue (input) -> { code}
+Function<String,Integer> myFunction = (String input) -> {return input.length();};
+// le compilateur déduit le type des paramètres d'entrées donc pas nécéssaire
+Function<String,Integer> myFunction = (input) -> {return input.length();};
+// un seul argument en entrée pas besoin de parenthèse
+Function<String,Integer> myFunction = input -> {return input.length();};
+// une seule instruction on peut supprimer les accolades et le return.
+Function<String,Integer> myFunction = input -> input.length();
+{% endhighlight %}
+
+
+On peut donc utiliser cette syntaxe mais cerise sur le gâteau on peut faire référence
+directement à la méthode length() avec la notation équivalente :
+{% highlight java %}
+// Méthode référence
+Function<String,Integer> myFunction = String::length;
+{% endhighlight %}
+
+ </blockquote>
 
  plus d'infos :
 
