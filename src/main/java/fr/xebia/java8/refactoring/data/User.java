@@ -8,7 +8,7 @@ import java.time.Period;
 
 public class User {
 
-    private final String title;
+    private final Title title;
 
     private final String firstname;
 
@@ -27,7 +27,7 @@ public class User {
 
     private LocalDate birthday;
 
-    public User(String title, String firstname, String lastname) {
+    public User(Title title, String firstname, String lastname) {
         this.title = title;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -67,7 +67,7 @@ public class User {
         return this;
     }
 
-    public String getTitle() {
+    public Title getTitle() {
         return title;
     }
 

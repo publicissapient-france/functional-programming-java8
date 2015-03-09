@@ -57,16 +57,16 @@ public class UserService {
     }
 
     /**
-     * @return a copy of users list ordered by lastname and firstname
+     * @return first 50 users ordered by first name and last name
      */
-    public List<User> findAll() {
+    public List<User> firstFiftyUsers() {
         //TODO: replace specific comparator with 'Comparator static methods' and collect with Collectors
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
 
         Collections.sort(usersOrdered, new UserComparator());
 
-        return usersOrdered;
+        return usersOrdered.subList(0, 50);
     }
 
     private static class UserComparator implements Comparator<User> {

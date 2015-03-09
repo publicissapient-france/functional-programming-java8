@@ -3,6 +3,7 @@ package fr.xebia.java8.refactoring.other;
 
 import fr.xebia.java8.refactoring.data.Address;
 import fr.xebia.java8.refactoring.data.Role;
+import fr.xebia.java8.refactoring.data.Title;
 import fr.xebia.java8.refactoring.data.User;
 
 import java.io.BufferedReader;
@@ -42,7 +43,7 @@ public class UserParser {
 
     private static User lineToUser(String line) {
         String[] columns = line.split(",");
-        User user = new User(columns[0], columns[1], columns[2]);
+        User user = new User(Title.valueOf(columns[0].replace(".", "")), columns[1], columns[2]);
 
         user.withLogin(columns[3])
                 .withPassword(columns[4])

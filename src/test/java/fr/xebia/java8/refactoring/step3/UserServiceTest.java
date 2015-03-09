@@ -11,7 +11,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -57,19 +56,12 @@ public class UserServiceTest {
 
     @Test
     public void should_return_list_ordered_by_firstname_and_lastname() {
-        //given
-        List<User> users = new ArrayList<>();
-        users.add(new User("Mme", "Martine", "Mercier"));
-        users.add(new User("M.", "Christophe", "Mercier"));
-        users.add(new User("Mme", "Pascal", "Dubois"));
-
-        UserService userService = new UserService(users);
-
         //when
-        List<User> usersOrdered = userService.findAll();
+        List<User> usersOrdered = userService.firstFiftyUsers();
 
         //Then
-        assertThat(usersOrdered.toString()).isEqualTo("[User{title='Mme', firstname='Pascal', lastname='Dubois'}, User{title='M.', firstname='Christophe', lastname='Mercier'}, User{title='Mme', firstname='Martine', lastname='Mercier'}]");
+        assertThat(usersOrdered).hasSize(50);
+        assertThat(usersOrdered.toString()).isEqualTo("[User{title='M', firstname='Alain', lastname='André'}, User{title='M', firstname='Alain', lastname='André'}, User{title='M', firstname='Andre', lastname='André'}, User{title='Mme', firstname='Andree', lastname='André'}, User{title='M', firstname='Bruno', lastname='André'}, User{title='Mme', firstname='Caroline', lastname='André'}, User{title='Mme', firstname='Cecile', lastname='André'}, User{title='Mme', firstname='Claire', lastname='André'}, User{title='M', firstname='Claude', lastname='André'}, User{title='Mme', firstname='Denise', lastname='André'}, User{title='M', firstname='Didier', lastname='André'}, User{title='M', firstname='Dominique', lastname='André'}, User{title='Mme', firstname='Francoise', lastname='André'}, User{title='M', firstname='Gerard', lastname='André'}, User{title='Mme', firstname='Isabelle', lastname='André'}, User{title='Mme', firstname='Jacqueline', lastname='André'}, User{title='Mme', firstname='Josette', lastname='André'}, User{title='Mme', firstname='Josette', lastname='André'}, User{title='M', firstname='Julien', lastname='André'}, User{title='M', firstname='Laurent', lastname='André'}, User{title='Mme', firstname='Madeleine', lastname='André'}, User{title='Mme', firstname='Madeleine', lastname='André'}, User{title='M', firstname='Marcel', lastname='André'}, User{title='M', firstname='Marcel', lastname='André'}, User{title='Mme', firstname='Michele', lastname='André'}, User{title='Mme', firstname='Monique', lastname='André'}, User{title='Mme', firstname='Paulette', lastname='André'}, User{title='M', firstname='Serge', lastname='André'}, User{title='M', firstname='Thierry', lastname='André'}, User{title='M', firstname='Andre', lastname='Bernard'}, User{title='M', firstname='Andre', lastname='Bernard'}, User{title='M', firstname='Andre', lastname='Bernard'}, User{title='Mme', firstname='Andree', lastname='Bernard'}, User{title='Mme', firstname='Anne', lastname='Bernard'}, User{title='Mme', firstname='Anne', lastname='Bernard'}, User{title='Mme', firstname='Annie', lastname='Bernard'}, User{title='Mme', firstname='Annie', lastname='Bernard'}, User{title='Mme', firstname='Audrey', lastname='Bernard'}, User{title='Mme', firstname='Aurelie', lastname='Bernard'}, User{title='Mme', firstname='Aurelie', lastname='Bernard'}, User{title='Mme', firstname='Bernadette', lastname='Bernard'}, User{title='Mme', firstname='Caroline', lastname='Bernard'}, User{title='Mme', firstname='Catherine', lastname='Bernard'}, User{title='Mme', firstname='Chantal', lastname='Bernard'}, User{title='Mme', firstname='Chantal', lastname='Bernard'}, User{title='Mme', firstname='Christelle', lastname='Bernard'}, User{title='Mme', firstname='Christine', lastname='Bernard'}, User{title='Mme', firstname='Claire', lastname='Bernard'}, User{title='Mme', firstname='Claudine', lastname='Bernard'}, User{title='Mme', firstname='Colette', lastname='Bernard'}]");
     }
 
     @Test
