@@ -17,10 +17,6 @@ public class UserService {
         users = UserParser.fromCsv("users.csv");
     }
 
-    public UserService(List<User> users) {
-        this.users = users;
-    }
-
     //TODO: convert user List to stream and use filter and count
     public long countUserWithRole(Role role) {
         long count = 0;
