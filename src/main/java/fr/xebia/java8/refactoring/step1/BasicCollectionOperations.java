@@ -3,6 +3,7 @@ package fr.xebia.java8.refactoring.step1;
 
 import fr.xebia.java8.refactoring.data.User;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,17 +12,31 @@ import java.util.Map;
 
 public class BasicCollectionOperations {
 
+    private static Map<String, BigDecimal> CURRENCIES_BY_ISOCODE = new HashMap<>();
+
+    private static Map<Integer, Long> FIBONACCI_CACHE = new HashMap<>();
+
+    static {
+        CURRENCIES_BY_ISOCODE.put("USD", BigDecimal.valueOf(0.91));
+        CURRENCIES_BY_ISOCODE.put("GPB", BigDecimal.valueOf(1.38));
+        CURRENCIES_BY_ISOCODE.put("AUD", BigDecimal.valueOf(0.70));
+        CURRENCIES_BY_ISOCODE.put("EUR", BigDecimal.valueOf(1));
+
+        FIBONACCI_CACHE.put(0, 0L);
+        FIBONACCI_CACHE.put(1, 1L);
+        FIBONACCI_CACHE.put(2, 1L);
+    }
+
+    //TODO :Refactor with forEach method
     public static void resetPassword(List<User> users) {
-        //TODO :Refactor with forEach method
 
         for (User user : users) {
             user.password = null;
         }
     }
 
+    //TODO :Refactor with removeIf method and use method reference
     public static void removeExpiredUsers(List<User> users) {
-        //TODO :Refactor with removeIf method and use method reference
-
         List<User> usersToRemove = new ArrayList<>();
 
         for (User user : users) {
@@ -33,8 +48,8 @@ public class BasicCollectionOperations {
         users.removeAll(usersToRemove);
     }
 
+    //TODO :Refactor with replaceAll method
     public static void addOneDayToDates(List<LocalDate> localDates) {
-        //TODO :Refactor with replaceAll method
 
         for (int i = 0; i < localDates.size(); i++) {
             LocalDate localDate = localDates.get(i);
@@ -44,8 +59,8 @@ public class BasicCollectionOperations {
         }
     }
 
+    //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
     public static Map<String, Integer> countWord(List<String> words) {
-        //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
         Map<String, Integer> count = new HashMap<>();
 
         for (String word : words) {
@@ -60,12 +75,14 @@ public class BasicCollectionOperations {
         return count;
     }
 
-    private static Map<Integer, Long> fibonacciCache = new HashMap<>();
+    //TODO : use getOrElse Map method
+    public static BigDecimal exchangeRateWithEuro(String isoCode) {
+        BigDecimal currencyByIsocode = CURRENCIES_BY_ISOCODE.get(isoCode);
+        if (currencyByIsocode != null) {
+            return currencyByIsocode;
+        }
 
-    static {
-        fibonacciCache.put(0, 0L);
-        fibonacciCache.put(1, 1L);
-        fibonacciCache.put(2, 1L);
+        return BigDecimal.ONE; //Default Currency is One (no conversion)
     }
 
     public static List<Long> fibonacci(int expectedNumberResult) {
@@ -80,13 +97,13 @@ public class BasicCollectionOperations {
 
     //TODO: Use computeIfAbsent map method
     private static long fibonacciComputation(int number) {
-        if (fibonacciCache.containsKey(number)) {
-            return fibonacciCache.get(number);
+        if (FIBONACCI_CACHE.containsKey(number)) {
+            return FIBONACCI_CACHE.get(number);
         }
 
         long fibonacci = fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
 
-        fibonacciCache.put(number, fibonacci);
+        FIBONACCI_CACHE.put(number, fibonacci);
 
         return fibonacci;
     }
