@@ -60,7 +60,7 @@ public class UserService {
      * @return first 50 users ordered by first name and last name
      */
     public List<User> firstFiftyUsers() {
-        //TODO: replace specific comparator with 'Comparator static methods' and collect with Collectors
+        //TODO: user limit, replace specific comparator with Comparator.comparing static methods and collect with Collectors
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
 
