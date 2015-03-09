@@ -2,6 +2,7 @@ package fr.xebia.java8.refactoring.step3;
 
 import fr.xebia.java8.refactoring.data.Role;
 import fr.xebia.java8.refactoring.data.User;
+import fr.xebia.java8.refactoring.data.UsersAgeStatistic;
 import fr.xebia.java8.refactoring.other.CurrentDate;
 import fr.xebia.java8.refactoring.step2.UserService;
 import org.assertj.core.api.Condition;
@@ -86,7 +87,7 @@ public class UserServiceTest {
 
     @Test
     public void should_return_user_by_login() {
-        Map<String, User> usersByLogin = userService.retrieveUserwithRoleByLogin(Role.SALES);
+        Map<String, User> usersByLogin = userService.retrieveUserWithRoleByLogin(Role.SALES);
 
         assertThat(usersByLogin).hasSize(340);
         assertThat(usersByLogin.entrySet()).are(keyIsLoginOfValue());
@@ -100,10 +101,7 @@ public class UserServiceTest {
         when(CurrentDate.get()).thenReturn(LocalDate.of(2014, 5, 7));
         Locale.setDefault(Locale.FRANCE);
 
-        assertThat(userService.generateAgeStatistic()).isEqualTo("Number of user : 1000\n" +
-                "Age min : 15\n" +
-                "Age max : 105\n" +
-                "Age average : 60,33");
+        assertThat(userService.generateAgeStatistic()).isEqualTo(new UsersAgeStatistic(1000, 15, 105, 60.334));
     }
 
     private Condition<Map.Entry<String, User>> keyIsLoginOfValue() {

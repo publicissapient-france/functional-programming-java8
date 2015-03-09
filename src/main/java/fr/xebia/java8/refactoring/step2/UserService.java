@@ -3,6 +3,7 @@ package fr.xebia.java8.refactoring.step2;
 
 import fr.xebia.java8.refactoring.data.Role;
 import fr.xebia.java8.refactoring.data.User;
+import fr.xebia.java8.refactoring.data.UsersAgeStatistic;
 import fr.xebia.java8.refactoring.other.UserParser;
 
 import java.util.*;
@@ -20,8 +21,8 @@ public class UserService {
         this.users = users;
     }
 
+    //TODO: convert user List to stream and use filter and count
     public long countUserWithRole(Role role) {
-        //TODO: convert user List to stream and use filter and count
         long count = 0;
         for (User user : users) {
             if (user.getRole() == role) {
@@ -32,8 +33,8 @@ public class UserService {
         return count;
     }
 
+    //TODO: use anyMatch
     public boolean isLoginAlreadyExist(String login) {
-        //TODO: use anyMatch
         for (User user : users) {
             if (user.getLogin().equals(login)) {
                 return true;
@@ -43,8 +44,9 @@ public class UserService {
         return false;
     }
 
+    //TODO:  Replace user.address type by Optional<Address>, use filter and findFirst.
+    //TODO: Then Use flatMap with getAddress and map with formatForEnveloppe method
     public String retrieveFormatedUserAddressByLogin(String login) {
-        //TODO:  Replace user.address type by Optional<Address>, user filter and findFirst. Then Use flatMap with getAddress and map with formatForEnveloppe method
         for (User user : users) {
             if (user.getLogin().equals(login)) {
                 if (user.getAddress() != null) {
@@ -59,8 +61,8 @@ public class UserService {
     /**
      * @return first 50 users ordered by first name and last name
      */
+    //TODO: use limit, replace specific comparator with Comparator.comparing static methods and collect with Collectors for generate new List
     public List<User> firstFiftyUsers() {
-        //TODO: user limit, replace specific comparator with Comparator.comparing static methods and collect with Collectors
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
 
@@ -82,8 +84,8 @@ public class UserService {
         }
     }
 
+    //TODO: Use collect with Collectors.groupingBy
     public Map<Role, List<User>> retrieveActiveUserByRole() {
-        //TODO: Use collect with Collectors.groupingBy
         Map<Role, List<User>> result = new HashMap<>();
 
         for (User user : users) {
@@ -101,8 +103,8 @@ public class UserService {
         return result;
     }
 
-    public Map<String, User> retrieveUserwithRoleByLogin(Role role) {
-        //TODO: Use collect with Collectors.toMap and Function.identity() as value mapper
+    //TODO: Use collect with Collectors.toMap and Function.identity() as value mapper
+    public Map<String, User> retrieveUserWithRoleByLogin(Role role) {
         Map<String, User> result = new HashMap<>();
 
         for (User user : users) {
@@ -114,7 +116,7 @@ public class UserService {
         return result;
     }
 
-    public String generateAgeStatistic() {
+    public UsersAgeStatistic generateAgeStatistic() {
         //TODO: use collect with Collectors.summarizingInt
         int count = 0;
         int min = Integer.MAX_VALUE;
@@ -134,6 +136,6 @@ public class UserService {
         }
         double average = (double) sum / count;
 
-        return String.format("Number of user : %d\nAge min : %d\nAge max : %d\nAge average : %.2f", count, min, max, average);
+        return new UsersAgeStatistic(count, min, max, average);
     }
 }
