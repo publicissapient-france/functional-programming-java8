@@ -60,6 +60,7 @@ public class BasicCollectionOperations {
     }
 
     //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
+    //TODO Use the sum method on Integer
     public static Map<String, Integer> countWord(List<String> words) {
         Map<String, Integer> count = new HashMap<>();
 
