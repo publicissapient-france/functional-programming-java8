@@ -29,60 +29,31 @@ public class BasicCollectionOperations {
 
     //TODO :Refactor with forEach method
     public static void resetPassword(List<User> users) {
-
-        for (User user : users) {
-            user.password = null;
-        }
+        users.forEach(user -> user.password = null);
     }
 
     //TODO :Refactor with removeIf method and use method reference
     public static void removeExpiredUsers(List<User> users) {
-        List<User> usersToRemove = new ArrayList<>();
-
-        for (User user : users) {
-            if (user.isExpired()) {
-                usersToRemove.add(user);
-            }
-        }
-
-        users.removeAll(usersToRemove);
+        users.removeIf(User::isExpired);
     }
 
     //TODO :Refactor with replaceAll method
     public static void addOneDayToDates(List<LocalDate> localDates) {
-
-        for (int i = 0; i < localDates.size(); i++) {
-            LocalDate localDate = localDates.get(i);
-            LocalDate newDate = localDate.plusDays(1);
-
-            localDates.set(i, newDate);
-        }
+        localDates.replaceAll(date -> date.plusDays(1));
     }
 
     //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
     public static Map<String, Integer> countWord(List<String> words) {
         Map<String, Integer> count = new HashMap<>();
 
-        for (String word : words) {
-            Integer countOfCurrentWord = count.get(word);
-            if (countOfCurrentWord == null) {
-                countOfCurrentWord = 0;
-            }
-
-            count.put(word, countOfCurrentWord + 1);
-        }
+        words.forEach(word -> count.merge(word, 1, Integer::sum));
 
         return count;
     }
 
     //TODO : use getOrElse Map method
     public static BigDecimal exchangeRateWithEuro(String isoCode) {
-        BigDecimal currencyByIsocode = CURRENCIES_BY_ISOCODE.get(isoCode);
-        if (currencyByIsocode != null) {
-            return currencyByIsocode;
-        }
-
-        return BigDecimal.ONE; //Default Currency is One (no conversion)
+        return CURRENCIES_BY_ISOCODE.getOrDefault(isoCode, BigDecimal.ONE); //Default Currency is One (no conversion)
     }
 
     public static List<Long> fibonacci(int expectedNumberResult) {
@@ -97,14 +68,6 @@ public class BasicCollectionOperations {
 
     //TODO: Use computeIfAbsent map method
     private static long fibonacciComputation(int number) {
-        if (FIBONACCI_CACHE.containsKey(number)) {
-            return FIBONACCI_CACHE.get(number);
-        }
-
-        long fibonacci = fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
-
-        FIBONACCI_CACHE.put(number, fibonacci);
-
-        return fibonacci;
+        return FIBONACCI_CACHE.computeIfAbsent(number, val -> fibonacciComputation(val - 1) + fibonacciComputation(val - 2));
     }
 }
