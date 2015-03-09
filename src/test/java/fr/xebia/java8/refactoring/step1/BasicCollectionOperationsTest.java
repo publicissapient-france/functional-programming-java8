@@ -1,7 +1,7 @@
-package fr.xebia.java8.refactoring.step2;
+package fr.xebia.java8.refactoring.step1;
 
 import fr.xebia.java8.refactoring.data.User;
-import fr.xebia.java8.refactoring.step1.BasicCollectionOperations;
+
 import org.assertj.core.api.Condition;
 import org.assertj.core.data.MapEntry;
 import org.junit.Test;
