@@ -75,7 +75,7 @@ public class BasicCollectionOperations {
         return count;
     }
 
-    //TODO : use getOrElse Map method
+    //TODO : use getOrDefault Map method
     public static BigDecimal exchangeRateWithEuro(String isoCode) {
         BigDecimal currencyByIsocode = CURRENCIES_BY_ISOCODE.get(isoCode);
         if (currencyByIsocode != null) {
