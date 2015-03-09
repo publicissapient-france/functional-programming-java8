@@ -54,10 +54,17 @@ Function<String,Integer> myFunction = input -> input.length();
 On peut donc utiliser cette syntaxe mais cerise sur le gâteau on peut faire référence
 directement à la méthode length() avec la notation équivalente :
 {% highlight java %}
-// Méthode référence
+// Instance Method reference
 Function<String,Integer> myFunction = String::length;
 {% endhighlight %}
 
+De  même des syntaxes équivalentes existent pour :
+{% highlight java %}
+// Static method reference
+IntFunction myFunction = Math::abs;
+// Constructor reference
+Function<String,StringBuilder> myFunction = StringBuilder::new;
+{% endhighlight %}
  </blockquote>
 
  plus d'infos :
@@ -138,7 +145,7 @@ Plus d'infos :
   -----------------
 
 ### 5 CompletableFuture
- 
+
  **Refactorer le code java 7 en Java 8**
 
  * Se connecter à la branche step5 :
