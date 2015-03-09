@@ -60,12 +60,12 @@ public class BasicCollectionOperations {
         return count;
     }
 
-    private static Map<Integer, Long> fibonacciValues = new HashMap<>();
+    private static Map<Integer, Long> fibonacciCache = new HashMap<>();
 
     static {
-        fibonacciValues.put(0, 0L);
-        fibonacciValues.put(1, 1L);
-        fibonacciValues.put(2, 1L);
+        fibonacciCache.put(0, 0L);
+        fibonacciCache.put(1, 1L);
+        fibonacciCache.put(2, 1L);
     }
 
     public static List<Long> fibonacci(int expectedNumberResult) {
@@ -78,12 +78,16 @@ public class BasicCollectionOperations {
         return result;
     }
 
-    //TODO: Unit test for fibonacci(45) is very slow. Optimize fibonacciComputation method with fibonacciValues map and computeIfAbsent
+    //TODO: Use computeIfAbsent map method
     private static long fibonacciComputation(int number) {
-        if (number < 2) {
-            return number;
-        } else {
-            return fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
+        if (fibonacciCache.containsKey(number)) {
+            return fibonacciCache.get(number);
         }
+
+        long fibonacci = fibonacciComputation(number - 1) + fibonacciComputation(number - 2);
+
+        fibonacciCache.put(number, fibonacci);
+
+        return fibonacci;
     }
 }
