@@ -67,7 +67,7 @@ Function<String,StringBuilder> myFunction = StringBuilder::new;
 {% endhighlight %}
  </blockquote>
 
- plus d'infos :
+Plus d'infos :
 
  * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
 
@@ -82,11 +82,37 @@ Function<String,StringBuilder> myFunction = StringBuilder::new;
      `git checkout step1`
  * Modifier les méthodes de la classe BasicCollectionOperations : Utiliser les méthodes ajoutées dans l'api Collection sans passer par les streams.
 
- plus d'infos :
+ <blockquote class = 'help' markdown="1">
+  * La méthode **foreach** de List prend en paramètre une fonction de type **Consumer** qui attend en entrée un object mais ne return aucune valeur.  
+  Exemple :
+  {% highlight java %} val -> System.out.println(val)
+  {% endhighlight %}  
 
- * [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
+  * La méthode **removeIf** de List prend en paramètre une fonction de type **Predicate** qui attend en entrée un object et retourne un boolean.
+  Exemple :
+  {% highlight java %} val -> val !=null
+  {% endhighlight %}  
+
+  * La méthode **replaceAll** de List prend en paramètre une fonction de type **UnaryOperator** qui attend en entrée un object et retourne un object du même type.
+  Exemple avec val un Integer:
+  {% highlight java %} val -> val + 1
+  {% endhighlight %}  
+
+  * La méthode **merge** de map prend en paramètre une **clef**, une **valeur** et une **Bifonction**, une fonction qui prend en entrée 2 objects et renvoie un object.
+    * Si la map ne contient pas la **clef**, la valeur est ajoutée à la map associée à cette **clef**.
+    * Si la map contient la clef, on remplace la valeur associée par une nouvelle calculée avec la **BiFunction** appliquée sur l'ancienne **valeur** et la nouvelle **valeur**. Exemple :
+    {% highlight java %} values.merge(key, word, (words, newWord) -> words + ", " + newWord);
+    {% endhighlight %}  
+
+  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déja **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui stockée dans la map et retournée.
+
+ </blockquote>
+
+Plus d'infos :
+
+* [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
+* [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+* [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
 
 Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step1-end' `
 
