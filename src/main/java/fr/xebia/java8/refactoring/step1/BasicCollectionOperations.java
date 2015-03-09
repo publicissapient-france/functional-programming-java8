@@ -51,7 +51,7 @@ public class BasicCollectionOperations {
         return count;
     }
 
-    //TODO : use getOrElse Map method
+    //TODO : use getOrDefault Map method
     public static BigDecimal exchangeRateWithEuro(String isoCode) {
         return CURRENCIES_BY_ISOCODE.getOrDefault(isoCode, BigDecimal.ONE); //Default Currency is One (no conversion)
     }
