@@ -12,7 +12,7 @@ import java.util.Map;
 public class BasicCollectionOperations {
 
     public static void resetPassword(List<User> users) {
-        //TODO :Refactor with forEach  method
+        //TODO :Refactor with forEach method
 
         for (User user : users) {
             user.password = null;
