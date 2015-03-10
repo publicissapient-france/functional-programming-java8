@@ -125,10 +125,37 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
       `git checkout step2`
  * Refactorer la class UserService.java
 
+ <blockquote class = 'help' markdown="1">
+ * Pour utiliser les streams :
+    1. Transformation de la collection en stream  
+    `widgets.stream()`
+
+    2. Cette nouvelle interface donne accès à des opérations intermédiaires sur mes données:  
+    `widgets.stream().mapToInt(w -> w.getWeight())`
+
+    3. Ainsi qu'à une opération terminale qui déclenchent les traitements :  
+    `widgets.stream().mapToInt(w -> w.getWeight()).sum()`
+
+    **Opération intermédiaires** : map, flatmap, filter, distinct,  limit, skip, sorted  
+    **Opération terminales** : allMatch, anyMatch, count, findAny, findFirst,  forEach, max, min ....
+Collect
+  * La méthode **findFirst** de stream retourne un **Optional**, un objet qui represente une valeur qui peux être présente ou absente. Il est possible d'appliquer un traitement sur cette hypothétique valeur avec la méthode **map(Function)** qui se réalisera uniquement si il y a bien une valeur.
+  * **flatMap** fonctionne comme map met remet 'A plat' les valeurs : par exemple une transformation qui aurait renvoyée une `List<List<String>>` avec un map, retournera une `List<String>` avec toutes les valeurs avec flatmap. De même une 'remise à plat' sur un `Optional<Optional<value>>` retournera un `Optional<Value>` qui sera présent uniquement si les 2 valeurs existes.
+  * Avec Java 8, **Comparator** est une interface **'Fonctionnelle'**, on peut l'écrire sous forme de fonction :  
+  {% highlight java %} Comparator<String> comparing = (val1, val2) -> Integer.compare(val1.length(), val2.length());
+  {% endhighlight %}  
+  Et même plus simple avec les méthodes ajoutés à l'interface Comparator :
+  {% highlight java %} Comparator<String> comparing = Comparator.comparing(String::length);
+  {% endhighlight %}
+
+ </blockquote>
+
+
  plus d'infos :
-  * [Stream Api](http://download.java.net/jdk8/docs/api/java/util/stream/Stream.html)
-  * [Optional](http://download.java.net/jdk8/docs/api/java/util/Optional.html)
-  * [Collectors](http://download.java.net/jdk8/docs/api/java/util/stream/Collectors.html)
+
+  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
+  * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)  
+  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
 
   Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step2-end' `
 
@@ -141,12 +168,12 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
       `git checkout step3`
  * Refactorer les class FileUtils.java et NumberUtils.java
 
-  plus d'infos :
+  plus d'infos :  
 
-    * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
-    * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
-    * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
-    * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+  * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)  
+  * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)  
+  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
+  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step3-end' `
 
@@ -162,11 +189,11 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 * Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
-Plus d'infos :
+Plus d'infos :  
 
- * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
- * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)  
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)  
+ * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)  
 
   -----------------
 
