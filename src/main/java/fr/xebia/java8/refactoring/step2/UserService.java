@@ -1,6 +1,7 @@
 package fr.xebia.java8.refactoring.step2;
 
 
+import fr.xebia.java8.refactoring.data.Address;
 import fr.xebia.java8.refactoring.data.Role;
 import fr.xebia.java8.refactoring.data.User;
 import fr.xebia.java8.refactoring.data.UsersAgeStatistic;
@@ -17,7 +18,7 @@ public class UserService {
         users = UserParser.fromCsv("users.csv");
     }
 
-    //TODO: convert user List to stream and use filter and count
+    //TODO: convert users List to stream and use filter and count
     public long countUserWithRole(Role role) {
         long count = 0;
         for (User user : users) {
@@ -40,8 +41,8 @@ public class UserService {
         return false;
     }
 
-    //TODO:  Replace user.address type by Optional<Address>, use filter and findFirst.
-    //TODO: Then Use flatMap with getAddress and map with formatForEnveloppe method
+    //TODO:  user OptionalAddress instead of address, use filter and findFirst.
+    //TODO: for finish this refactoring you need Optional.Map, Stream.flatMap and Optional.orElse
     public String retrieveFormatedUserAddressByLogin(String login) {
         for (User user : users) {
             if (user.getLogin().equals(login)) {
@@ -114,7 +115,7 @@ public class UserService {
 
     public UsersAgeStatistic generateAgeStatistic() {
         //TODO: use collect with Collectors.summarizingInt
-        int count = 0;
+        long count = 0;
         int min = Integer.MAX_VALUE;
         int max = 0;
         int sum = 0;
