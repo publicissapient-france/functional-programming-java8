@@ -75,7 +75,7 @@ public class NumberUtils {
     /**
      * @return Infinite stream who return each next number of fibonacci sequence
      */
-    //TODO: Implement method with Stream.generate, update test for check your implementation.
+    //TODO: This method is not implemented. Implement this with Stream.generate, update corresponding test for check your implementation.
     public static Stream<Long> fibonacciStream() {
         throw new NotImplementedException();
     }
