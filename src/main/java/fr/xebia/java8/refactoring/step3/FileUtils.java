@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class FileUtils {
 
@@ -39,7 +40,7 @@ public class FileUtils {
         }
     }
 
-    //TODO:replace by Files.walk and remove visitor
+    //TODO:replace by Files.walk and remove visitor. Use Optional.orElseThrow for throw FileNotFoundException
     public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
         Path rootDictory = Paths.get(path);
 
