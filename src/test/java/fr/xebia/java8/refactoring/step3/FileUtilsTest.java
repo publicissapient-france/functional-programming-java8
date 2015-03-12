@@ -1,7 +1,6 @@
-package fr.xebia.java8.refactoring.step4;
+package fr.xebia.java8.refactoring.step3;
 
 import fr.xebia.java8.refactoring.data.User;
-import fr.xebia.java8.refactoring.step3.FileUtils;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;

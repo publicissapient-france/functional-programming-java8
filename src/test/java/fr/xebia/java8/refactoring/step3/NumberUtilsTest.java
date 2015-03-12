@@ -1,6 +1,5 @@
-package fr.xebia.java8.refactoring.step4;
+package fr.xebia.java8.refactoring.step3;
 
-import fr.xebia.java8.refactoring.step3.NumberUtils;
 import org.junit.Test;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
