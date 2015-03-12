@@ -177,14 +177,18 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * Se connecter à la branche step3 :
       `git checkout step3`
  * Refactorer les classes **FileUtils.java** et **NumberUtils.java**
+ 
 
  <blockquote class = 'help' markdown="1">
  * **Files.lines** permet de renvoyer un stream où chaque élément représente une ligne dans le fichier et cela de manière bufferisée. La lecture effective de la ligne ne se fera que lors du traitement réalisé par l'opération terminale.
  * Il est possible de 'skiper' un certain nombre d'élément dans un stream avec la méthode **skip(number)**
  * La méthode **Files.walk** permet de lire récursivement une hérarchie de répertoire de manière 'Lazy'.
- * La méthode **ints** de Random permet de renvoyer un stream infini où chaque itération sur un élément va renvoyer une chiffre aléatoire. Utiliser limit pour les streams infinis
- * La méthode **Arrays.stream** permet de générer un stream à partir d'un tableau
+ * La méthode **ints** de Random permet de renvoyer un stream infini où chaque itération sur un élément va renvoyer une chiffre aléatoire. Utiliser limit pour les streams infinis.
+ * La méthode **Arrays.stream** permet de générer un stream à partir d'un tableau.
  * La méthode **Collectors.partitioningBy** permet de partionner le contenu d'un stream en fonction d'un **Predicate**. La partition est effectuée en retournant une `Map<Boolean,List<Element>>` avec les éléments qui vérifient le prédicat associés à la clé Boolean.TRUE et les autres avec la clef Boolean.FALSE.
+ * La méthonde IntStream.rangeClosed(min,max) permet de retourner un stream de int contenant les valeurs de 'min' à 'max'.
+ * Pour les types primitifs, existent des streams particulier. Exemple **IntStream** pour des objets de type int. Pour passer d'un stream de primitifs à un stream d'objet il faut utiliser la méthode **mapToObj**. Pour passer d'un stream vers un stream de primitifs il faut utiliser **mapToLong**, **mapToInt** ..etc
+ * Il est possible de générer son propre Stream en utilisant la méthode **Stream.generate(Supplier supplier)**
  </blockquote>
   plus d'infos :  
 
