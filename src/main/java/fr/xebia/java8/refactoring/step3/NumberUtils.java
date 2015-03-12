@@ -18,8 +18,8 @@ public class NumberUtils {
     }
 
     /**
-     * |
-     * Return the random int between 0 and 'number * 10'
+     *
+     * Return the random 'number' int between 0 and 'number * 10'
      *
      * @param number
      * @param seed
