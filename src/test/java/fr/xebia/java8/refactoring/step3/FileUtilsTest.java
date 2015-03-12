@@ -33,7 +33,7 @@ public class FileUtilsTest {
     public void should_find_file_path_by_filename() throws IOException {
         Path fileWithName = FileUtils.findRecursivelyFileByName(".", "FileUtils.java");
 
-        assertThat(fileWithName).isEqualTo(Paths.get("./src/main/java/fr/xebia/java8/refactoring/step4/FileUtils.java"));
+        assertThat(fileWithName).isEqualTo(Paths.get("./src/main/java/fr/xebia/java8/refactoring/step3/FileUtils.java"));
     }
 
     @Test(expected = FileNotFoundException.class)
