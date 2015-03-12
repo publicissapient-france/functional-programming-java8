@@ -5,8 +5,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.annotation.Nullable;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class NumberUtils {
@@ -20,14 +18,16 @@ public class NumberUtils {
     }
 
     /**
-     * Return the 'number' random int between 0 and 'number * 10'
+     * |
+     * Return the random int between 0 and 'number * 10'
      *
      * @param number
      * @param seed
      * @return
      */
+    //TODO:Use Random.ints method
     public static int[] generateRandom(int number, @Nullable Long seed) {
-        //TODO:Use Random ints method
+
         int[] randomValues = new int[number];
 
         Random random = getRandom(seed);
@@ -39,8 +39,9 @@ public class NumberUtils {
         return randomValues;
     }
 
+    //TODO: To transform an array to stream, use Arrays.stream. Use also Collectors.partitioningBy.
     public static Map<Boolean, List<Integer>> splitEvenAndOddNumber(int[] numbers) {
-        //TODO: Use Collectors.partitioningBy. To transform an array to stream, use Arrays.stream
+
 
         List<Integer> evenNumber = new ArrayList<>();
         List<Integer> oddNumber = new ArrayList<>();
@@ -60,9 +61,8 @@ public class NumberUtils {
         return result;
     }
 
+    //TODO: replace for by stream generation with IntStream.rangeClosed. You need also mapToLong and mapToObj
     public static List<Long> fibonacci(int expectedNumberResult) {
-        //TODO: replace for by stream generation with IntStream.rangeClosed, mapToLong and mapToObj
-
         List<Long> result = new ArrayList<>(expectedNumberResult);
 
         for (int i = 1; i <= expectedNumberResult; i++) {
@@ -75,8 +75,8 @@ public class NumberUtils {
     /**
      * @return Infinite stream who return each next number of fibonacci sequence
      */
+    //TODO: Implement method with Stream.generate, update test for check your implementation.
     public static Stream<Long> fibonacciStream() {
-        //TODO: Implemente method, update test for validation. Use Stream.generate
         throw new NotImplementedException();
     }
 

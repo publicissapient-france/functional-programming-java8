@@ -18,8 +18,8 @@ import java.util.List;
 
 public class FileUtils {
 
+    //TODO: Replace By Files.lines, use static method reference
     public static List<User> loadUsersFromCsv(Path csvPath) {
-        //TODO: Replace By Files.lines, use static method reference for the skip and stream.map
         try (BufferedReader reader = new BufferedReader(new FileReader(csvPath.toFile()))) {
             String line;
             boolean firstLine = true;
@@ -39,8 +39,8 @@ public class FileUtils {
         }
     }
 
+    //TODO:replace by Files.walk and remove visitor
     public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
-        //TODO:replace by Files.walk and remove visitor
         Path rootDictory = Paths.get(path);
 
         SearchVisitor searchVisitor = new SearchVisitor(fileName);
