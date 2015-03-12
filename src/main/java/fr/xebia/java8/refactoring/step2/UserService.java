@@ -40,8 +40,8 @@ public class UserService {
         return false;
     }
 
-    //TODO:  user OptionalAddress instead of address, use filter and findFirst.
-    //TODO: for finish this refactoring you need Optional.Map, Stream.flatMap and Optional.orElse
+    //TODO: user OptionalAddress instead of address, use filter and findFirst.
+    //TODO: to finish this refactoring you need Stream.flatMap, Optional.Map, and Optional.orElse
     public String retrieveFormatedUserAddressByLogin(String login) {
         for (User user : users) {
             if (user.getLogin().equals(login)) {
@@ -57,7 +57,8 @@ public class UserService {
     /**
      * @return first 50 users ordered by first name and last name
      */
-    //TODO: use limit, replace specific comparator with Comparator.comparing static methods and collect with Collectors for generate new List
+    //TODO: use sorted and replace specific comparator with Comparator.comparing static methods.
+    //TODO: use limit method and collect with Collectors for generate new List
     public List<User> firstFiftyUsers() {
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
@@ -80,7 +81,7 @@ public class UserService {
         }
     }
 
-    //TODO: Use collect with Collectors.groupingBy
+    //TODO: Use filter on expired method and collect with Collectors.groupingBy
     public Map<Role, List<User>> retrieveActiveUserByRole() {
         Map<Role, List<User>> result = new HashMap<>();
 
@@ -99,7 +100,7 @@ public class UserService {
         return result;
     }
 
-    //TODO: Use collect with Collectors.toMap and Function.identity() as value mapper
+    //TODO: Use filter on role and collect with Collectors.toMap and Function.identity() as value mapper
     public Map<String, User> retrieveUserWithRoleByLogin(Role role) {
         Map<String, User> result = new HashMap<>();
 
@@ -113,6 +114,7 @@ public class UserService {
     }
 
     //TODO: use collect with Collectors.summarizingInt
+    //TODO: use returned IntSummaryStatistics object to create UsersAgeStatistic object
     public UsersAgeStatistic generateAgeStatistic() {
         long count = 0;
         int min = Integer.MAX_VALUE;
