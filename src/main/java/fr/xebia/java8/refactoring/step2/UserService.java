@@ -1,7 +1,6 @@
 package fr.xebia.java8.refactoring.step2;
 
 
-import fr.xebia.java8.refactoring.data.Address;
 import fr.xebia.java8.refactoring.data.Role;
 import fr.xebia.java8.refactoring.data.User;
 import fr.xebia.java8.refactoring.data.UsersAgeStatistic;
@@ -113,8 +112,8 @@ public class UserService {
         return result;
     }
 
+    //TODO: use collect with Collectors.summarizingInt
     public UsersAgeStatistic generateAgeStatistic() {
-        //TODO: use collect with Collectors.summarizingInt
         long count = 0;
         int min = Integer.MAX_VALUE;
         int max = 0;
