@@ -176,8 +176,11 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 
  * Se connecter à la branche step3 :
       `git checkout step3`
- * Refactorer les class FileUtils.java et NumberUtils.java
+ * Refactorer les classes **FileUtils.java** et **NumberUtils.java**
 
+ <blockquote class = 'help' markdown="1">
+ * **Files.lines** permet de renvoyer un stream où chaque élément représente une ligne dans le fichier et cela de manière bufferisée. La lecture effective de la ligne ne se fera que lors du traitement réalisé par l'opération terminale.
+ </blockquote>
   plus d'infos :  
 
   * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)  
