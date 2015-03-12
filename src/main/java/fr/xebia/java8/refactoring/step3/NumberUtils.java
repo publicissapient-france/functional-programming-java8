@@ -1,10 +1,11 @@
 package fr.xebia.java8.refactoring.step3;
 
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class NumberUtils {
@@ -18,7 +19,6 @@ public class NumberUtils {
     }
 
     /**
-     *
      * Return the random 'number' int between 0 and 'number * 10'
      *
      * @param number
@@ -28,48 +28,27 @@ public class NumberUtils {
     //TODO:Use Random.ints method
     public static int[] generateRandom(int number, @Nullable Long seed) {
 
-        int[] randomValues = new int[number];
-
         Random random = getRandom(seed);
 
-        for (int i = 0; i < number; i++) {
-            randomValues[i] = random.nextInt(number * 10);
-        }
-
-        return randomValues;
+        return random.ints(0, number * 10)
+                .limit(number)
+                .toArray();
     }
 
     //TODO: To transform an array to stream, use Arrays.stream. Use also Collectors.partitioningBy.
     public static Map<Boolean, List<Integer>> splitEvenAndOddNumber(int[] numbers) {
 
-
-        List<Integer> evenNumber = new ArrayList<>();
-        List<Integer> oddNumber = new ArrayList<>();
-
-        for (int number : numbers) {
-            if (number % 2 == 0) {
-                evenNumber.add(number);
-            } else {
-                oddNumber.add(number);
-            }
-        }
-
-        Map<Boolean, List<Integer>> result = new HashMap<>();
-        result.put(Boolean.TRUE, evenNumber);
-        result.put(Boolean.FALSE, oddNumber);
-
-        return result;
+        return Arrays.stream(numbers)
+                .mapToObj(Integer::valueOf)
+                .collect(Collectors.partitioningBy(number -> number % 2 == 0));
     }
 
     //TODO: replace for by stream generation with IntStream.rangeClosed. You need also mapToLong and mapToObj
     public static List<Long> fibonacci(int expectedNumberResult) {
-        List<Long> result = new ArrayList<>(expectedNumberResult);
-
-        for (int i = 1; i <= expectedNumberResult; i++) {
-
-            result.add(fibonacciComputation(i));
-        }
-        return result;
+        return IntStream.rangeClosed(1, expectedNumberResult)
+                .mapToLong(NumberUtils::fibonacciComputation)
+                .mapToObj(Long::valueOf)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -77,7 +56,8 @@ public class NumberUtils {
      */
     //TODO: This method is not implemented. Implement this with Stream.generate, update corresponding test for check your implementation.
     public static Stream<Long> fibonacciStream() {
-        throw new NotImplementedException();
+        final AtomicInteger counter = new AtomicInteger(1);
+        return Stream.generate(() -> fibonacciComputation(counter.getAndIncrement()));
     }
 
     private static long fibonacciComputation(int number) {
