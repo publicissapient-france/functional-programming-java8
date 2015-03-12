@@ -104,7 +104,7 @@ Plus d'infos :
     {% highlight java %} values.merge(key, word, (words, newWord) -> words + ", " + newWord);
     {% endhighlight %}  
 
-  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déja **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui stockée dans la map et retournée.
+  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déjà, **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui est stockée dans la map et retournée.
 
  </blockquote>
 
