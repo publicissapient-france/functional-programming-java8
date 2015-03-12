@@ -183,6 +183,8 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * Il est possible de 'skiper' un certain nombre d'élément dans un stream avec la méthode **skip(number)**
  * La méthode **Files.walk** permet de lire récursivement une hérarchie de répertoire de manière 'Lazy'.
  * La méthode **ints** de Random permet de renvoyer un stream infini où chaque itération sur un élément va renvoyer une chiffre aléatoire. Utiliser limit pour les streams infinis
+ * La méthode **Arrays.stream** permet de générer un stream à partir d'un tableau
+ * La méthode **Collectors.partitioningBy** permet de partionner le contenu d'un stream en fonction d'un **Predicate**. La partition est effectuée en retournant une `Map<Boolean,List<Element>>` avec les éléments qui vérifient le prédicat associés à la clé Boolean.TRUE et les autres avec la clef Boolean.FALSE.
  </blockquote>
   plus d'infos :  
 
