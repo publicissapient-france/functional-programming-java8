@@ -1,4 +1,4 @@
-PlayWithJava8
-=============
+Functionnal Programming with Java8
+==================================
 
-[http://ibeauvais.github.io/PlayWithJava8](http://ibeauvais.github.io/PlayWithJava8)
+[http://xebia-france.github.io/functional-programming-java8/](http://xebia-france.github.io/functional-programming-java8/)
