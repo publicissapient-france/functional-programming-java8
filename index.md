@@ -190,7 +190,7 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * La méthonde IntStream.rangeClosed(min,max) permet de retourner un stream de int contenant les valeurs de 'min' à 'max'.
  * Il est possible de générer son propre Stream en utilisant la méthode **Stream.generate(Supplier supplier)**
  </blockquote>
-  plus d'infos :  
+  Plus d'infos :  
 
   * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)  
   * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)  
@@ -210,6 +210,13 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 * Modifier les méthodes de la classe DateUtils : Remplacer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 * Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
+
+<blockquote class = 'help' markdown="1">
+* **LocalDate** et **LocalDateTime** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de classe **DateFormatter**.
+* La méthode **Period.between** permet de comparer deux **LocalDate**.
+* **LocalDateTime** simplifie les manipulations des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
+* Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent de simplifier les conversions.
+</blockquote>
 
 Plus d'infos :  
 
