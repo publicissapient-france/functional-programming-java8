@@ -1,9 +1,5 @@
 package fr.xebia.java8.refactoring.step3;
 
-import fr.xebia.java8.refactoring.data.Address;
-import fr.xebia.java8.refactoring.data.Role;
-import fr.xebia.java8.refactoring.data.User;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -15,7 +11,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
+import fr.xebia.java8.refactoring.data.Address;
+import fr.xebia.java8.refactoring.data.Role;
+import fr.xebia.java8.refactoring.data.User;
 
 public class FileUtils {
 
