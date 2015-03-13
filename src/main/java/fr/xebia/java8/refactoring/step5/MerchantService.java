@@ -2,6 +2,7 @@ package fr.xebia.java8.refactoring.step5;
 
 import fr.xebia.java8.refactoring.step5.repository.ProductRepository;
 import fr.xebia.java8.refactoring.step5.repository.StockRepository;
+import fr.xebia.java8.refactoring.step5.search.SearchEngine;
 
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,23 @@ public class MerchantService {
                 .get();
     }
 
+    public Product searchFirstProductWithName(String name) throws ExecutionException, InterruptedException {
+        List<SearchEngine> nodes = SearchEngine.getNodes();
+
+        CompletableFuture<Object> tasks = CompletableFuture.anyOf(nodes.stream()
+                .map(node -> supplyAsync(() -> node.searchByName(name), executor))
+                .toArray(CompletableFuture[]::new));
+
+
+        return (Product) tasks.get();
+    }
+
     //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task ared completed
     public Map<Product.Category, List<Product>> retrieveProductByCategories() throws ExecutionException, InterruptedException {
         Map<Product.Category, List<Product>> productsByCategories = new ConcurrentHashMap<>();
 
         CompletableFuture<Void> tasks = CompletableFuture.allOf(Stream.of(Product.Category.values())
-                .map(category -> supplyAsync(() -> productRepository.productsByCategory(category))
+                .map(category -> supplyAsync(() -> productRepository.productsByCategory(category), executor)
                         .thenAccept(products -> productsByCategories.put(category, products)))
                 .toArray(CompletableFuture[]::new));
 

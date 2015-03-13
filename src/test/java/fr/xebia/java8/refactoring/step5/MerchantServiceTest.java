@@ -37,4 +37,13 @@ public class MerchantServiceTest {
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());
     }
+
+    @Test
+    public void should_Name() throws ExecutionException, InterruptedException {
+        Product name = merchantService.searchFirstProductWithName("name");
+
+
+        System.out.println(name);
+
+    }
 }
