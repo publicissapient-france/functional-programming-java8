@@ -2,9 +2,15 @@ package fr.xebia.java8.refactoring.step5;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Stream;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import static java.util.concurrent.CompletableFuture.supplyAsync;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MerchantServiceTest {
