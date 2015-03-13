@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
-import java.util.stream.Stream;
-
-import static java.util.concurrent.CompletableFuture.supplyAsync;
 
 public class MerchantService {
 
@@ -19,7 +16,7 @@ public class MerchantService {
 
     private StockRepository stockRepository = StockRepository.CURRENT;
 
-    // TODO make asynch call with CompletableFuture and user combine for create a Merchant
+    // TODO make asynch call with CompletableFuture and use combine for create a Merchant
     public Merchant retrieveMerchant() throws ExecutionException, InterruptedException {
         Future<List<Product>> products = executor.submit(new Callable<List<Product>>() {
             @Override
@@ -29,15 +26,39 @@ public class MerchantService {
 
         });
 
-        Future<List<Integer>> stocks = executor.submit(new Callable<List<Integer>>() {
+        Future<List<Stock>> stocks = executor.submit(new Callable<List<Stock>>() {
             @Override
-            public List<Integer> call() throws Exception {
+            public List<Stock> call() throws Exception {
                 return stockRepository.initStocks();
             }
         });
 
 
         return new Merchant(products.get(), stocks.get());
+    }
+
+    //TODO: Use CompletableFuture for chain the two async call
+    public void buyProduct(Integer productId) throws ExecutionException, InterruptedException {
+        Future<Product> product = executor.submit(new Callable<Product>() {
+            @Override
+            public Product call() throws Exception {
+                return productRepository.findById(productId);
+            }
+
+        });
+
+        executor.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    stockRepository.decrementStock(product.get().getStockId());
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
     }
 
     //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task ared completed

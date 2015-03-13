@@ -22,7 +22,8 @@ public class SearchEngine {
 
     public Product searchByName(String name) {
         FakeRepositoryTools.waitInSecond(1.5);
-        return new Product(1, name, name + " nodeId:"+nodeId, Product.Category.BOOKS);
+        //return new Product(1, name, name + " nodeId:"+nodeId, Product.Category.BOOKS, stockId);
+        return null;
     }
 
     public static List<SearchEngine> getNodes() {
