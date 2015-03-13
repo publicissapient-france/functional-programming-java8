@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
 
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
     /**
      * Parse String date without times
      *
@@ -12,7 +15,7 @@ public class DateUtils {
      * @return
      */
     public static LocalDate parseDate(String date) {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return LocalDate.parse(date, DATE_FORMATTER);
     }
 
     /**
@@ -22,7 +25,7 @@ public class DateUtils {
      * @return
      */
     public static LocalDateTime parseDateTime(String date) {
-        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
     }
 
     public static int age(LocalDate birthday, LocalDate now) {
@@ -38,13 +41,14 @@ public class DateUtils {
     }
 
     public static boolean dayAreEquals(LocalDateTime firstDateWithTime, LocalDateTime secondDateWithTime) {
-        return firstDateWithTime.getDayOfYear() == secondDateWithTime.getDayOfYear();
+        return firstDateWithTime.toLocalDate().equals(secondDateWithTime.toLocalDate());
     }
 
     public static String convertToTimeZone(String dateWithTime, ZoneId timeZoneFrom, ZoneId timeZoneTo) {
-        return LocalDateTime.parse(dateWithTime, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))
-                            .atZone(timeZoneFrom)
-                            .withZoneSameInstant(timeZoneTo).toString();
+        return LocalDateTime.parse(dateWithTime, DATE_TIME_FORMATTER)
+                .atZone(timeZoneFrom)
+                .withZoneSameInstant(timeZoneTo)
+                .format(DATE_TIME_FORMATTER);
     }
 
 }

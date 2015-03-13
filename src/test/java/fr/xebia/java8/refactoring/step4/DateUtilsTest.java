@@ -63,8 +63,9 @@ public class DateUtilsTest {
     @Test
     public void should_return_true_when_days_are_equals() {
         //TODO:Change parseDateTimeJava7 to parseDateTimeJava8 for switch to localDate
-        assertThat(DateUtils.dayAreEquals(parseDateTimeJava8("2014-01-27T12:05:10"), parseDateTimeJava8("2014-01-27T20:05:10"))).isTrue();
+        assertThat(DateUtils.dayAreEquals(parseDateTimeJava8("2015-01-27T12:05:10"), parseDateTimeJava8("2014-01-27T20:05:10"))).isFalse();
         assertThat(DateUtils.dayAreEquals(parseDateTimeJava8("2014-01-27T12:05:10"), parseDateTimeJava8("2014-01-28T12:05:10"))).isFalse();
+        assertThat(DateUtils.dayAreEquals(parseDateTimeJava8("2014-01-27T12:05:10"), parseDateTimeJava8("2014-01-27T20:05:10"))).isTrue();
     }
 
     @Test
