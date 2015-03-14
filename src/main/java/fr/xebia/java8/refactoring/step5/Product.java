@@ -1,5 +1,7 @@
 package fr.xebia.java8.refactoring.step5;
 
+import java.util.Objects;
+
 public class Product {
 
     public enum Category {
@@ -7,19 +9,20 @@ public class Product {
         MOVIES,
         GAME,
         COMPUTERS,
-        ELECTRONICS
+        ELECTRONICS;
     }
-
     private Integer id;
+
     private String name;
     private String description;
     private Category category;
-
-    public Product(final Integer id, final String name, final String description, Category category) {
+    private Integer stockId;
+    public Product(final Integer id, final String name, final String description, Category category, Integer stockId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
+        this.stockId = stockId;
     }
 
     public Integer getId() {
@@ -54,6 +57,10 @@ public class Product {
         this.category = category;
     }
 
+    public Integer getStockId() {
+        return stockId;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -61,6 +68,28 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", category=" + category +
+                ", stockId=" + stockId +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, category, stockId);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        return Objects.equals(this.id, other.id)
+                && Objects.equals(this.name, other.name)
+                && Objects.equals(this.description, other.description)
+                && Objects.equals(this.category, other.category)
+                && Objects.equals(this.stockId, other.stockId);
     }
 }

@@ -1,16 +1,15 @@
 package fr.xebia.java8.refactoring.step5;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Stream;
-
+import fr.xebia.java8.refactoring.step5.repository.StockRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static java.util.concurrent.CompletableFuture.supplyAsync;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
+import static com.jayway.awaitility.Awaitility.await;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MerchantServiceTest {
@@ -26,24 +25,33 @@ public class MerchantServiceTest {
     public void should_execute_future_for_products_and_stocks() throws Exception {
         Merchant merchant = merchantService.retrieveMerchant();
 
-        assertThat(merchant.getProducts().get(0).getName()).isEqualTo("name1");
-        assertThat(merchant.getStocks().get(0)).isEqualTo(100);
+
+        assertThat(merchant.getProducts()).hasSize(6);
+        assertThat(merchant.getProducts().get(0)).isEqualTo(new Product(1, "product 1", "Description product 1", Product.Category.BOOKS, 7));
+        assertThat(merchant.getStocks().get(0)).isEqualTo(new Stock(7, 3));
     }
 
     @Test
     public void should_execute_retrieveProductByCategories() throws Exception {
+        long time = System.nanoTime();
+
         Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategories();
+
+        long elapsedTime = System.nanoTime() - time;
+        System.out.println("retrieveProductByCategories " + TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
 
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());
     }
 
     @Test
-    public void should_Name() throws ExecutionException, InterruptedException {
-        Product name = merchantService.searchFirstProductWithName("name");
+    public void should_decrement_stock_when_buy_product() throws ExecutionException, InterruptedException {
+        long time = System.nanoTime();
+        merchantService.buyProduct(1);
 
+        long elapsedTime = System.nanoTime() - time;
+        System.out.println("buyProduct " + TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
 
-        System.out.println(name);
-
+        await().until(() -> StockRepository.CURRENT.findById(7).getQuantity() == 2);
     }
 }

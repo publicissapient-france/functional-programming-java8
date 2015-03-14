@@ -6,12 +6,12 @@ public class Merchant {
 
     private List<Product> products;
 
-    private List<Integer> stocks;
+    private List<Stock> stocks;
 
     public Merchant() {
     }
 
-    public Merchant(final List<Product> products, final List<Integer> stocks) {
+    public Merchant(final List<Product> products, final List<Stock> stocks) {
         this.products = products;
         this.stocks = stocks;
     }
@@ -20,7 +20,7 @@ public class Merchant {
         return products;
     }
 
-    public List<Integer> getStocks() {
+    public List<Stock> getStocks() {
         return stocks;
     }
 }

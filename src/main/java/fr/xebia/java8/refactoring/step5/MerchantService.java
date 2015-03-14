@@ -2,8 +2,8 @@ package fr.xebia.java8.refactoring.step5;
 
 import fr.xebia.java8.refactoring.step5.repository.ProductRepository;
 import fr.xebia.java8.refactoring.step5.repository.StockRepository;
-import fr.xebia.java8.refactoring.step5.search.SearchEngine;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -19,22 +19,17 @@ public class MerchantService {
 
     private StockRepository stockRepository = StockRepository.CURRENT;
 
-    // TODO make asynch call with CompletableFuture and user combine for create a Merchant
+    // TODO make asynch call with CompletableFuture and use combine for create a Merchant
     public Merchant retrieveMerchant() throws ExecutionException, InterruptedException {
         return supplyAsync(productRepository::initProducts, executor)
                 .thenCombine(supplyAsync(stockRepository::initStocks, executor), Merchant::new)
                 .get();
     }
 
-    public Product searchFirstProductWithName(String name) throws ExecutionException, InterruptedException {
-        List<SearchEngine> nodes = SearchEngine.getNodes();
-
-        CompletableFuture<Object> tasks = CompletableFuture.anyOf(nodes.stream()
-                .map(node -> supplyAsync(() -> node.searchByName(name), executor))
-                .toArray(CompletableFuture[]::new));
-
-
-        return (Product) tasks.get();
+    //TODO: Use CompletableFuture for chain the two async call
+    public void buyProduct(Integer productId) throws ExecutionException, InterruptedException {
+        supplyAsync(() -> productRepository.findById(productId))
+                .thenAcceptAsync(product -> stockRepository.decrementStock(product.getStockId()));
     }
 
     //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task ared completed
