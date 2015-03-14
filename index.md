@@ -229,7 +229,7 @@ Plus d'infos :
  * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)  
  * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
 
- Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step4-end' ` 
+ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step4-end' `
 
   -----------------
 
@@ -239,11 +239,10 @@ Plus d'infos :
 
  * Se connecter à la branche step5 :
  `git checkout step5`
- * Exécuter le test **MerchantService** pour voir le temps de réponse de la méthode **retrieveMerchant**
- * L'utilisation des Futures en Java 7 implique des appels bloquants. En effet, les appels à **products.get()** et **stocks.get()** sont séquentiels. Java 8 nous permet de paralléliser ces appels plus facilement.
- * Implémenter la méthode **retrieveMerchantAsync** en utilisant le type **CompletableFuture**
- * Utiliser la méthode **supplyAsync** pour retrouver les produits et les stocks avec les méthodes **initProducts** et **initStocks**
- * Utiliser la méthode **thenCombine** pour enchaîner les appels et retourner un **Merchant**
+ * MerchantService effectue des appels vers ProductRepository et StockRepository. Ces appels étant long, l'implémentation les effectue de manière asynchrone. Refactorer ses appels à l'aide de la classe **CompletableFuture** de Java 8 afin mieux gérer l'ordonnancement des taches asynchrones.
+
+ <blockquote class = 'help' markdown="1">
+ </blockquote>
 
  Plus d'infos :
 
