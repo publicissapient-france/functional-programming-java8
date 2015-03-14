@@ -33,12 +33,7 @@ public class MerchantServiceTest {
 
     @Test
     public void should_execute_retrieveProductByCategories() throws Exception {
-        long time = System.nanoTime();
-
         Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategories();
-
-        long elapsedTime = System.nanoTime() - time;
-        System.out.println("retrieveProductByCategories " + TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
 
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());
@@ -46,11 +41,7 @@ public class MerchantServiceTest {
 
     @Test
     public void should_decrement_stock_when_buy_product() throws ExecutionException, InterruptedException {
-        long time = System.nanoTime();
         merchantService.buyProduct(1);
-
-        long elapsedTime = System.nanoTime() - time;
-        System.out.println("buyProduct " + TimeUnit.NANOSECONDS.toMillis(elapsedTime) + "ms");
 
         await().until(() -> StockRepository.CURRENT.findById(7).getQuantity() == 2);
     }
