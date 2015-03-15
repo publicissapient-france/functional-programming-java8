@@ -212,13 +212,13 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 * Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
 <blockquote class = 'help' markdown="1">
-* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures ces 2 objets sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple : {% highlight java %}  
+* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple : {% highlight java %}
 LocalTime time = LocalTime.of(10, 30); // 10h30
 LocalDate date = LocalDate.of(2015, 3, 10); // 10 Mars 2015
 LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
 {% endhighlight %}
 * **LocalDate.parse** et **LocalDateTime.parse** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de classe **DateFormatter**.
-* La méthode **Period.between** de renvoyer un object représentant une période entre deux **LocalDate**.
+* La méthode **Period.between** permet de renvoyer un objet représentant une période entre deux **LocalDate**.
 * **LocalDateTime** simplifie les manipulations des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
 * Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent d'appliquer ou de convertir des timezones d'object DateTime.
 </blockquote>
