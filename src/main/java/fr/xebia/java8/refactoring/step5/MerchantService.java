@@ -19,7 +19,7 @@ public class MerchantService {
 
     private StockRepository stockRepository = StockRepository.CURRENT;
 
-    // TODO make asynch call with CompletableFuture and use combine for create a Merchant
+    // TODO make asynch call with CompletableFuture and use combine to create a Merchant
     public Merchant retrieveMerchant() throws ExecutionException, InterruptedException {
         return supplyAsync(productRepository::initProducts, executor)
                 .thenCombine(supplyAsync(stockRepository::initStocks, executor), Merchant::new)
@@ -32,7 +32,7 @@ public class MerchantService {
                 .thenAcceptAsync(product -> stockRepository.decrementStock(product.getStockId()));
     }
 
-    //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task ared completed
+    //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task are completed
     public Map<Product.Category, List<Product>> retrieveProductByCategories() throws ExecutionException, InterruptedException {
         Map<Product.Category, List<Product>> productsByCategories = new ConcurrentHashMap<>();
 
