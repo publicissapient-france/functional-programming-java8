@@ -16,7 +16,7 @@ public class MerchantService {
 
     private StockRepository stockRepository = StockRepository.CURRENT;
 
-    // TODO make asynch call with CompletableFuture and use combine for create a Merchant
+    // TODO make asynch call with CompletableFuture and use combine to create a Merchant
     public Merchant retrieveMerchant() throws ExecutionException, InterruptedException {
         Future<List<Product>> products = executor.submit(new Callable<List<Product>>() {
             @Override
@@ -61,7 +61,7 @@ public class MerchantService {
 
     }
 
-    //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task ared completed
+    //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task are completed
     public Map<Product.Category, List<Product>> retrieveProductByCategories() throws ExecutionException, InterruptedException {
         Map<Product.Category, List<Product>> productsByCategories = new HashMap<>();
 
