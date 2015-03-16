@@ -243,18 +243,19 @@ Plus d'infos :
 
  <blockquote class = 'help' markdown="1">
  * Pour effectuer un appel asynchrone qui retourne un **CompletableFuture** on peut utiliser la méthode `supplyAsync(Supplier)`. Exemple :
- {% highlight java %} CompletableFuture<User> user = CompletableFuture.supplyAsync(() -> userService.findUserById(userId));
+ {% highlight java %}CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->   userService.findUserById(userId));
  {% endhighlight %}
- * Les méthodes de création de tache asynchrone de CompletableFuture peuvent prendre optionnelement un **Executor** pour configurer le pool de thread à utiliser. Par default, elle utilise le ForkJoinPool introduit en java 7.
+ * Les méthodes de création de tache asynchrone de type **CompletableFuture** peuvent prendre optionnelement un **Executor** pour configurer le pool de thread à utiliser. Par default, elles utilisent le ForkJoinPool introduit en java 7.
  * Un **CompletableFuture** represente une ou un ensemble de tache asynchrone. Il implémente **Future**, on peut donc tenter d'arréter ces taches (cancel), récuper la valeur en bloquant l'execution jusqu'à ce qu'elle soit disponible (get).
- * La méthode **thenCombine** de CompletableFuture permet de 'combiner' la valeur de retour de 2 taches asynchrones pour pour produire un nouvel object. La syntaxe est la suivante  : `task1.thenCombine(task2,BiFunction)` avec BiFunction une fonction qui prend le retour de la tache1 et le retour de la tache2 et qui retoune un 3e type d'object.
- * La méthode `thenAcceptAsync` permet d'effectuer à la suite d'un premier appel synchrone un autre appel asynchrone qui prend en paramètre la valeur de retour du premier appel.
-* La méthode `CompletableFuture.allOf` permet de créér un **CompletableFuture** d'un tableau de **CompletableFuture**. Ce **CompletableFuture** sera considéré comme terminé lorsque toutes ses taches seront terminés.
+ * La méthode **thenCombine** de **CompletableFuture** permet de 'combiner' la valeur de retour de 2 taches asynchrones pour pour produire un nouvel object.  
+ La syntaxe est la suivante  : `task1.thenCombine(task2,BiFunction)` avec BiFunction une fonction qui prend le retour de la tache 1 et le retour de la tache 2 et qui retoune un 3e type d'object.
+ * La méthode `thenAcceptAsync` permet d'effectuer à la suite d'un premier appel asynchrone un autre appel asynchrone qui prend en paramètre la valeur de retour du premier appel.
+* La méthode `CompletableFuture.allOf` permet de créér un **CompletableFuture** à partir d'un tableau de **CompletableFuture**. Ce **CompletableFuture** sera considéré comme terminé lorsque toutes ces taches seront terminés.
 * La méthode **thenAccept** de **CompletableFuture** permet de passer une callback à un **CompletableFuture** qui sera exécutée à la fin de cette tache. Exemple :
-{% highlight java %} CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->
+{% highlight java %} CompletableFuture.supplyAsync(() ->  
+ userService.findUserById(userId))
+               .thenAccept(user -> log.info("user " + user + " found"));
 {% endhighlight %}
-CompletableFuture.supplyAsync(() -> userService.findUserById(userId))
-               .thenAccept(user -> log.info("user " + user + " found"));a
  </blockquote>
 
  Plus d'infos :
