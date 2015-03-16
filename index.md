@@ -212,7 +212,8 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 * Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
 <blockquote class = 'help' markdown="1">
-* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple : {% highlight java %}
+* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple :
+{% highlight java %}
 LocalTime time = LocalTime.of(10, 30); // 10h30
 LocalDate date = LocalDate.of(2015, 3, 10); // 10 Mars 2015
 LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
@@ -243,8 +244,10 @@ Plus d'infos :
 
  <blockquote class = 'help' markdown="1">
  * Pour effectuer un appel asynchrone qui retourne un **CompletableFuture** on peut utiliser la méthode `supplyAsync(Supplier)`. Exemple :
- {% highlight java %}CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->   userService.findUserById(userId));
- {% endhighlight %}
+{% highlight java %}
+CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->
+          userService.findUserById(userId));
+{% endhighlight %}
  * Les méthodes de création de tache asynchrone de type **CompletableFuture** peuvent prendre optionnelement un **Executor** pour configurer le pool de thread à utiliser. Par default, elles utilisent le ForkJoinPool introduit en java 7.
  * Un **CompletableFuture** represente une ou un ensemble de tache asynchrone. Il implémente **Future**, on peut donc tenter d'arréter ces taches (cancel), récuper la valeur en bloquant l'execution jusqu'à ce qu'elle soit disponible (get).
  * La méthode **thenCombine** de **CompletableFuture** permet de 'combiner' la valeur de retour de 2 taches asynchrones pour pour produire un nouvel object.  
@@ -252,7 +255,8 @@ Plus d'infos :
  * La méthode `thenAcceptAsync` permet d'effectuer à la suite d'un premier appel asynchrone un autre appel asynchrone qui prend en paramètre la valeur de retour du premier appel.
 * La méthode `CompletableFuture.allOf` permet de créér un **CompletableFuture** à partir d'un tableau de **CompletableFuture**. Ce **CompletableFuture** sera considéré comme terminé lorsque toutes ces taches seront terminés.
 * La méthode **thenAccept** de **CompletableFuture** permet de passer une callback à un **CompletableFuture** qui sera exécutée à la fin de cette tache. Exemple :
-{% highlight java %} CompletableFuture.supplyAsync(() ->  
+{% highlight java %}
+CompletableFuture.supplyAsync(() ->  
  userService.findUserById(userId))
                .thenAccept(user -> log.info("user " + user + " found"));
 {% endhighlight %}
