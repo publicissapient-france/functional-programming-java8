@@ -50,8 +50,8 @@ Theme Styles
 
 body {
   box-sizing: border-box;
-  color:#373737;
-  background: #212121;
+  color:#1F1F1F;
+  background: #1F1F1F;
   font-size: 16px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -61,8 +61,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
-  color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  color:#AAD663;
+  font-family: 'verdana', 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
 
@@ -98,13 +98,14 @@ p {
 }
 
 footer p {
-  color: #f2f2f2;
+  color: #FFFFFF;
 }
 
 a {
   text-decoration: none;
-  color: #007edf;
+  color: #CC6528;
   text-shadow: none;
+  font-weight: bold;
 
   transition: color 0.5s ease;
   transition: text-shadow 0.5s ease;
@@ -121,7 +122,7 @@ a {
 a:hover, a:focus {text-decoration: underline;}
 
 footer a {
-  color: #F2F2F2;
+  color: #FFFFFF;
   text-decoration: underline;
 }
 
@@ -160,7 +161,8 @@ p img {
 pre, code {
   width: 100%;
   color: #222;
-  background-color: #fff;
+  background-color: #FFC;
+
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
@@ -175,12 +177,18 @@ pre {
   padding: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
   overflow: auto;
+  border:1px solid #CC6528;
 }
 
 code {
   padding: 3px;
   margin: 0 3px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.teaser{
+  background-color:#CC6528;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color:#FFFFFF;
 }
 
 pre code {
@@ -234,7 +242,7 @@ hr {
 }
 
 table {
-  border: 1px solid #373737;
+  border: 1px solid #1F1F1F;
   margin-bottom: 20px;
   text-align: left;
  }
@@ -242,17 +250,17 @@ table {
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
-  background: #373737;
+  background: #1F1F1F;
   color: #fff;
  }
 
 td {
   padding: 10px;
-  border: 1px solid #373737;
+  border: 1px solid #1F1F1F;
  }
 
 form {
-  background: #f2f2f2;
+  background: #FFFFFF;
   padding: 20px;
 }
 
@@ -266,7 +274,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 800px;
+  max-width: 900px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -287,12 +295,13 @@ Full-Width Styles
 }
 
 #header_wrap {
-  background: #212121;
-  background: -moz-linear-gradient(top, #373737, #212121);
-  background: -webkit-linear-gradient(top, #373737, #212121);
-  background: -ms-linear-gradient(top, #373737, #212121);
-  background: -o-linear-gradient(top, #373737, #212121);
-  background: linear-gradient(top, #373737, #212121);
+  background: #1F1F1F;
+  background: -moz-linear-gradient(top, #1F1F1F, #1F1F1F);
+  background: -webkit-linear-gradient(top, #1F1F1F, #1F1F1F);
+  background: -ms-linear-gradient(top, #1F1F1F, #1F1F1F);
+  background: -o-linear-gradient(top, #1F1F1F, #1F1F1F);
+  background: linear-gradient(top, #1F1F1F, #1F1F1F);
+  height:220px;
 }
 
 #header_wrap .inner {
@@ -301,7 +310,7 @@ Full-Width Styles
 
 #project_title {
   margin: 0;
-  color: #fff;
+  color: #AAD663;
   font-size: 42px;
   font-weight: 700;
   text-shadow: #111 0px 0px 10px;
@@ -355,7 +364,7 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #f2f2f2;
+  background: #FFFFFF;
   border-top: 1px solid #111;
   border-bottom: 1px solid #111;
 }
@@ -365,11 +374,32 @@ Full-Width Styles
 }
 
 #footer_wrap {
-  background: #212121;
+  background: #1F1F1F;
 }
 
-
-
+#devoxx-left{
+  position: absolute;
+  margin: 10px 0 10px 0;
+  border: 0px;
+  padding: 0px;
+  box-shadow: 0 0 0px ;
+  -webkit-box-shadow: 0 0 0px ;
+  -moz-box-shadow: 0 0 0px ;
+  -o-box-shadow: 0 0 0px ;
+  -ms-box-shadow: 0 0 0px ;
+}
+#devoxx-logo{
+  float:right;
+  clear:both;
+  margin: 10px 0 10px 0;
+  border: 0px;
+  padding: 0px;
+  box-shadow: 0 0 0px ;
+  -webkit-box-shadow: 0 0 0px ;
+  -moz-box-shadow: 0 0 0px ;
+  -o-box-shadow: 0 0 0px ;
+  -ms-box-shadow: 0 0 0px ;
+}
 /*******************************************************************************
 Small Device Styles
 *******************************************************************************/
