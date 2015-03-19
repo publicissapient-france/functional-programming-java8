@@ -68,7 +68,8 @@ De  même des syntaxes équivalentes existent pour :
 IntFunction myFunction = Math::abs; //Equivalent input -> Math.abs(input)
 // Constructor reference
 Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -> new StringBuilder(input)
-{% endhighlight %}
+{% endhighlight %}  
+
  </blockquote>
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step0-end' `
@@ -80,7 +81,14 @@ Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -
 
  * Se connecter à la branche step1 :
      `git checkout step1`
- * Modifier les méthodes de la classe BasicCollectionOperations : Utiliser les méthodes ajoutées dans l'api Collection sans passer par les streams.
+ * Modifier les méthodes de la classe **BasicCollectionOperations** : Utiliser les méthodes ajoutées dans l'api Collection sans passer par les streams.
+
+Plus d'infos :
+
+* [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
+* [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+* [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
+
 
  <blockquote class = 'help' markdown="1">
   * La méthode **foreach** de List prend en paramètre une fonction de type **Consumer** qui attend en entrée un object mais ne return aucune valeur.  
@@ -104,15 +112,9 @@ Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -
     {% highlight java %} values.merge(key, word, (words, newWord) -> words + ", " + newWord);
     {% endhighlight %}  
 
-  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déjà, **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui est stockée dans la map et retournée.
+  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déjà, **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui est stockée dans la map et ensuite retournée.
 
  </blockquote>
-
-Plus d'infos :
-
-* [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
-* [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
-* [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
 
 Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step1-end' `
 
