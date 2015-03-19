@@ -212,7 +212,13 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
     `git checkout step4`
 * Modifier les méthodes de la classe DateUtils : Remplacer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
-* Attention pour cette step il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
+* Attention pour cette étape il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
+
+Plus d'infos :
+
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
+ * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
 
 <blockquote class = 'help' markdown="1">
 * **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple :
@@ -221,17 +227,11 @@ LocalTime time = LocalTime.of(10, 30); // 10h30
 LocalDate date = LocalDate.of(2015, 3, 10); // 10 Mars 2015
 LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
 {% endhighlight %}
-* **LocalDate.parse** et **LocalDateTime.parse** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de classe **DateFormatter**.
+* **LocalDate.parse** et **LocalDateTime.parse** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de la classe **DateFormatter**.
 * La méthode **Period.between** permet de renvoyer un objet représentant une période entre deux **LocalDate**.
-* **LocalDateTime** simplifie les manipulations des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
+* **LocalDateTime** simplifie la manipulation des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
 * Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent d'appliquer ou de convertir des timezones d'object DateTime.
 </blockquote>
-
-Plus d'infos :  
-
- * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)  
- * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)  
- * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step4-end' `
 
