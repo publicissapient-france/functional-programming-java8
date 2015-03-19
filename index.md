@@ -245,6 +245,11 @@ LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
  `git checkout step5`
  * MerchantService effectue des appels vers ProductRepository et StockRepository. Ces appels étant long, l'implémentation les effectue de manière asynchrone. Refactorer ses appels à l'aide de la classe **CompletableFuture** de Java 8 afin mieux gérer l'ordonnancement des taches asynchrones.
 
+Plus d'infos :
+
+ * [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
+
  <blockquote class = 'help' markdown="1">
  * Pour effectuer un appel asynchrone qui retourne un **CompletableFuture** on peut utiliser la méthode `supplyAsync(Supplier)`. Exemple :
 {% highlight java %}
@@ -254,7 +259,7 @@ CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->
  * Les méthodes de création de tâches asynchrones de type **CompletableFuture** peuvent prendre optionnelement un **Executor** pour configurer le pool de thread à utiliser. Par default, elles utilisent le ForkJoinPool introduit en java 7.
  * Un **CompletableFuture** représente un ensemble de tâches asynchrones. Il implémente **Future**, on peut donc tenter d'arréter ces tâches (cancel), récupérer la valeur en bloquant l'exécution jusqu'à ce qu'elle soit disponible (get).
  * La méthode **thenCombine** de **CompletableFuture** permet de 'combiner' la valeur de retour de 2 tâches asynchrones pour produire un nouvel object.
- La syntaxe est la suivante  : `task1.thenCombine(task2,BiFunction)` avec **BiFunction** une fonction qui prend le retour de la tâche 1 et le retour de la tâche 2 et qui retourne un 3e type d'object.
+ La syntaxe est la suivante  : `CompletableFuture<Type> task3 = task1.thenCombine(task2,BiFunction)` avec **BiFunction** une fonction qui prend le retour de la tâche 1 et le retour de la tâche 2 et qui retourne un 3e type d'object.
  * La méthode `thenAcceptAsync` permet d'enchaîner à la suite d'un premier appel asynchrone un autre appel asynchrone.
  * La méthode `CompletableFuture.allOf` permet de créér un **CompletableFuture** à partir d'un tableau de **CompletableFuture**. Ce **CompletableFuture** sera considéré comme terminé lorsque toutes ces tâches seront terminés.
  * La méthode **thenAccept** de **CompletableFuture** permet de passer une callback à un **CompletableFuture** qui sera exécutée à la fin de cette tâche. Exemple :
@@ -263,10 +268,5 @@ CompletableFuture.supplyAsync(() ->
  userService.findUserById(userId))
                .thenAccept(user -> log.info("user " + user + " found"));
 {% endhighlight %}
- Les informations de log seront affichées lorsque la méthode findUserById aura terminé son exécution.
+Dans cet exemple, les informations de log seront affichées lorsque la méthode findUserById aura terminée son exécution.
  </blockquote>
-
- Plus d'infos :
-
- * [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
