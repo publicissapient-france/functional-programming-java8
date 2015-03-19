@@ -13,7 +13,7 @@ Les tests unitaires passent en java 7, ils doivent toujours passer en Java 8. Il
 Des commentaires avec des TODO dans le code sont la pour vous aiguiller.
 
 ### Pre-requis
-* Avoir le jdk 8 dernière version d'installé ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
+* Avoir le jdk 8  d'installé ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
 * Avoir git
 * Avoir maven
 * cloner le repository git clone [https://github.com/xebia-france/functional-programming-java8.git](https://github.com/xebia-france/functional-programming-java8.git)
@@ -23,13 +23,17 @@ Des clefs USB sont disponibles avec ces pre-requis.
 
 -----------------
 
-### (Optionel) Discovery new lambda syntax
+### (Optionnel) Discovery new lambda syntax
  Cette première étape permet de découvrir la syntaxe de base des fonctions en Java 8. Si vous êtes déja à l'aise avec les **'Lambda'**, **'Static & Instance method reference'**, et **'Constructor reference'** vous pouvez passer directement à **[l'Etape 1](#step1)**.
 
  * Se connecter à la branche step 0 :
      `git checkout step0`
 
  * Ouvrir la classe **FunctionGenerator**. Cette classe permet de retourner des fonctions mais elle a été codée en Java 7, avec des classes anonymes. Modifier la pour utiliser la nouvelle syntaxe Java 8 des lambdas.
+
+Plus d'infos :
+
+ * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
 
 <blockquote class = 'help' markdown="1">
 
@@ -55,21 +59,17 @@ On peut donc utiliser cette syntaxe mais cerise sur le gâteau on peut faire ré
 directement à la méthode length() avec la notation équivalente :
 {% highlight java %}
 // Instance Method reference
-Function<String,Integer> myFunction = String::length;
+Function<String,Integer> myFunction = String::length; //Equivalent input -> input.length()
 {% endhighlight %}
 
 De  même des syntaxes équivalentes existent pour :
 {% highlight java %}
 // Static method reference
-IntFunction myFunction = Math::abs;
+IntFunction myFunction = Math::abs; //Equivalent input -> Math.abs(input)
 // Constructor reference
-Function<String,StringBuilder> myFunction = StringBuilder::new;
+Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -> new StringBuilder(input)
 {% endhighlight %}
  </blockquote>
-
-Plus d'infos :
-
- * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step0-end' `
 
