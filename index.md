@@ -125,7 +125,14 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 
  * Se connecter à la branche step2 :
       `git checkout step2`
- * Refactorer la class UserService.java
+ * Refactorer la class **UserService.java** en ustilisant les **streams**
+
+plus d'infos :
+
+  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
+  * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)  
+  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
+  
 
  <blockquote class = 'help' markdown="1">
  * Pour utiliser les streams :
@@ -146,28 +153,21 @@ Collect
   * Avec Java 8, **Comparator** est une interface **'Fonctionnelle'**, on peut l'écrire sous forme de fonction :  
   {% highlight java %} Comparator<String> comparing = (val1, val2) -> Integer.compare(val1.length(), val2.length());
   {% endhighlight %}  
-  Et même plus simple avec les méthodes ajoutés à l'interface Comparator :
+  Et même plus simple avec les méthodes ajoutées à l'interface Comparator :
   {% highlight java %} Comparator<String> comparing = Comparator.comparing(String::length);
   {% endhighlight %}
   * Pour limiter le nombre d'élements à traiter dans un stream, utiliser la méthode **limit**
-  * Pour 'Collecter' les éléments traiter dans un stream, utiliser la méthode **collect(Collector collector)**
-le collector peut être un collector prédéfini dans la classe Collectors ou son propre collector. Par exemple :
+  * Pour 'Collecter' les éléments traités dans un stream, utiliser la méthode **collect(Collector collector)**.
+Le collector peut être un collector prédéfini dans la classe Collectors ou son propre collector. Par exemple :
 {% highlight java %} values.stream().collect(Collectors.toSet()) // retourne un Set avec les éléments
 {% endhighlight %}
   * **Collectors.groupingBy** permet de retourner une Map avec les éléments groupés en fonction d'une clef.
 Dans sa version la plus simple groupingBy attend en entrée une fonction permettant de déterminer la clef de regroupement
   * **Collectors.toMap** retourne une map également mais ne regroupe par les objects avec la même clé dans un autre object. La clef doit donc être unique. toMap dans sa version la plus simple attends deux fonctions en paramètre une pour déterminer la clef, l'autre pour déterminer la valeur.
-  * **Collectors.summarizingInt** permet de renvoyer un object **IntSummaryStatistics** contenant des statistiques sur une valeur numérique des éléments du stream. **summarizingInt** attend une fonction permettant d'extraire cette valeur numérique.
+  * **Collectors.summarizingInt** permet de renvoyer un object **IntSummaryStatistics** contenant des statistiques sur une valeur numérique liées aux éléments du stream. **summarizingInt** attend une fonction permettant d'extraire cette valeur numérique.
 
 
  </blockquote>
-
-
- plus d'infos :
-
-  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
-  * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)  
-  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
 
   Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step2-end' `
 
