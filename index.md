@@ -10,7 +10,8 @@ Cet atelier a pour objectif de vous faire coder en utilisant les nouvelles fonct
 Le principe est simple : des fonctionnalités ont été codées en Java 7, à vous des les refactorer pour utiliser les améliorations de Java 8.
 Les tests unitaires passent en java 7, ils doivent toujours passer en Java 8. Ils sont la pour vérifier l'iso fonctionnalité de l'implémentation.
 
-Des commentaires avec des TODO dans le code sont la pour vous aiguiller.
+Des commentaires avec des TODO dans le code sont la pour aiguiller les changements dans le code.  
+En cas de bloquage, vous pouvez cliquer sur les boutons <button  type="button" class = "teaser">Aide</button>
 
 ### Pre-requis
 * Avoir le jdk 8  d'installé ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
@@ -30,10 +31,6 @@ Des clefs USB sont disponibles avec ces pre-requis.
      `git checkout step0`
 
  * Ouvrir la classe **FunctionGenerator**. Cette classe permet de retourner des fonctions mais elle a été codée en Java 7, avec des classes anonymes. Modifier la pour utiliser la nouvelle syntaxe Java 8 des lambdas.
-
-Plus d'infos :
-
- * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
 
 <blockquote class = 'help' markdown="1">
 
@@ -72,6 +69,10 @@ Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -
 
  </blockquote>
 
+ Plus d'infos :
+
+  * [Syntax of Lambda Expressions](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html#syntax)
+
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step0-end' `
 
 -----------------
@@ -82,13 +83,6 @@ Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -
  * Se connecter à la branche step1 :
      `git checkout step1`
  * Modifier les méthodes de la classe **BasicCollectionOperations** : Utiliser les méthodes ajoutées dans l'api Collection sans passer par les streams.
-
-Plus d'infos :
-
-* [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
-* [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
-* [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
-
 
  <blockquote class = 'help' markdown="1">
   * La méthode **foreach** de List prend en paramètre une fonction de type **Consumer** qui attend en entrée un object mais ne return aucune valeur.  
@@ -116,6 +110,13 @@ Plus d'infos :
 
  </blockquote>
 
+ Plus d'infos :
+
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html](http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/util/Map.html](http://docs.oracle.com/javase/8/docs/api/java/util/Map.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html](http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html)
+
+
 Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step1-end' `
 
 -----------------
@@ -126,13 +127,6 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
  * Se connecter à la branche step2 :
       `git checkout step2`
  * Refactorer la class **UserService.java** en ustilisant les **streams**
-
-plus d'infos :
-
-  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
-  * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)  
-  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
-  
 
  <blockquote class = 'help' markdown="1">
  * Pour utiliser les streams :
@@ -169,6 +163,13 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 
  </blockquote>
 
+ plus d'infos :
+
+   * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)  
+   * [Optional](http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html)  
+   * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)  
+
+
   Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step2-end' `
 
   -----------------
@@ -179,13 +180,6 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * Se connecter à la branche step3 :
       `git checkout step3`
  * Refactorer les classes **FileUtils.java** et **NumberUtils.java**
-
- Plus d'infos :
-
-  * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
-  * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
-  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
-  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
  <blockquote class = 'help' markdown="1">
  * **Files.lines** permet de renvoyer un stream où chaque élément représente une ligne dans le fichier et cela de manière bufferisée. La lecture effective de la ligne ne se fera que lors du traitement réalisé par l'opération terminale.
@@ -198,6 +192,13 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * La méthode IntStream.rangeClosed(min,max) permet de retourner un stream de int contenant les valeurs de 'min' à 'max'.
  * Il est possible de générer son propre Stream en utilisant la méthode **Stream.generate(Supplier supplier)**
  </blockquote>
+
+ Plus d'infos :
+
+  * [File Api](http://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html)
+  * [Random Api](http://docs.oracle.com/javase/8/docs/api/java/util/Random.html)
+  * [Collectors](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html)
+  * [Stream Api](http://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
 
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step3-end' `
@@ -214,12 +215,6 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 * Attention pour cette étape il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
-Plus d'infos :
-
- * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
- * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
-
 <blockquote class = 'help' markdown="1">
 * **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple :
 {% highlight java %}
@@ -230,8 +225,18 @@ LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
 * **LocalDate.parse** et **LocalDateTime.parse** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de la classe **DateFormatter**.
 * La méthode **Period.between** permet de renvoyer un objet représentant une période entre deux **LocalDate**.
 * **LocalDateTime** simplifie la manipulation des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
+* **ZonedDateTime** représente une date avec l'heure et une timezone. Exemple :
+{% highlight java %}//Le 20/12/2014 11:30:00 Europe/Paris
+ZonedDateTime zonedDateTime = ZonedDateTime.of(2014, 12, 20, 11, 30, 0, 0, ZoneId.of("Europe/Paris"));
+{% endhighlight %}
 * Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent d'appliquer ou de convertir des timezones d'object DateTime.
 </blockquote>
+
+Plus d'infos :
+
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html](http://docs.oracle.com/javase/8/docs/api/java/time/package-summary.html)
+ * [http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](http://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
+ * [http://docs.oracle.com/javase/tutorial/datetime/iso/period.html](http://docs.oracle.com/javase/tutorial/datetime/iso/period.html)
 
  Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step4-end' `
 
@@ -244,11 +249,6 @@ LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
  * Se connecter à la branche step5 :
  `git checkout step5`
  * MerchantService effectue des appels vers ProductRepository et StockRepository. Ces appels étant long, l'implémentation les effectue de manière asynchrone. Refactorer ses appels à l'aide de la classe **CompletableFuture** de Java 8 afin mieux gérer l'ordonnancement des taches asynchrones.
-
-Plus d'infos :
-
- * [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
- * [http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
 
  <blockquote class = 'help' markdown="1">
  * Pour effectuer un appel asynchrone qui retourne un **CompletableFuture** on peut utiliser la méthode `supplyAsync(Supplier)`. Exemple :
@@ -270,3 +270,8 @@ CompletableFuture.supplyAsync(() ->
 {% endhighlight %}
 Dans cet exemple, les informations de log seront affichées lorsque la méthode findUserById aura terminée son exécution.
  </blockquote>
+
+ Plus d'infos :
+
+  * [https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
+  * [http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
