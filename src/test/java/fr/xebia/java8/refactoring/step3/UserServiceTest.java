@@ -41,17 +41,17 @@ public class UserServiceTest {
     }
 
     @Test
-    public void should_return_formated_address_when_user_with_address_exist() {
+    public void should_return_formatted_address_when_user_with_address_exist() {
         assertThat(userService.retrieveFormatedUserAddressByLogin("dominiquevincent")).isEqualTo("5 6th Street\nLIGHTFOOT 23090");
     }
 
     @Test
-    public void should_return_formated_address_when_user_without_address_exist() {
+    public void should_return_default_formatted_address_when_user_is_without_address() {
         assertThat(userService.retrieveFormatedUserAddressByLogin("christianemoreau")).isEqualTo("1 rue de Rivoli\n75001 Paris");
     }
 
     @Test
-    public void should_return_throw_exception_when_user_not_exist() {
+    public void should_return_default_formatted_address_when_user_not_found() {
         assertThat(userService.retrieveFormatedUserAddressByLogin("ivanbeauvais")).isEqualTo("1 rue de Rivoli\n75001 Paris");
     }
 
