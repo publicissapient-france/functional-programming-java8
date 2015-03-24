@@ -31,17 +31,17 @@ public class MerchantServiceTest {
     }
 
     @Test
+    public void should_decrement_stock_when_buy_product() throws ExecutionException, InterruptedException {
+        merchantService.buyProduct(1);
+
+        await().until(() -> StockRepository.CURRENT.findById(7).getQuantity() == 2);
+    }
+
+    @Test
     public void should_execute_retrieveProductByCategories() throws Exception {
         Map<Product.Category, List<Product>> productByCategories = merchantService.retrieveProductByCategories();
 
         assertThat(productByCategories.size()).isEqualTo(5);
         assertThat(productByCategories.keySet()).contains(Product.Category.values());
-    }
-
-    @Test
-    public void should_decrement_stock_when_buy_product() throws ExecutionException, InterruptedException {
-        merchantService.buyProduct(1);
-
-        await().until(() -> StockRepository.CURRENT.findById(7).getQuantity() == 2);
     }
 }
