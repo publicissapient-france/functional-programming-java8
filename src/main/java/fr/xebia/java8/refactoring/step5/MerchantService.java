@@ -3,7 +3,6 @@ package fr.xebia.java8.refactoring.step5;
 import fr.xebia.java8.refactoring.step5.repository.ProductRepository;
 import fr.xebia.java8.refactoring.step5.repository.StockRepository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -63,7 +62,7 @@ public class MerchantService {
 
     //TODO: refactor in functional way : you need use CompletableFuture.allOf for check that all task are completed
     public Map<Product.Category, List<Product>> retrieveProductByCategories() throws ExecutionException, InterruptedException {
-        Map<Product.Category, List<Product>> productsByCategories = new HashMap<>();
+        Map<Product.Category, List<Product>> productsByCategories = new ConcurrentHashMap<>();
 
         for (Product.Category category : Product.Category.values()) {
 
