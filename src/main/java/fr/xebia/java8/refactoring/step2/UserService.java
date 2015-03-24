@@ -40,7 +40,7 @@ public class UserService {
         return false;
     }
 
-    //TODO: user OptionalAddress instead of address, use filter and findFirst.
+    //TODO: user user.getOptionalAddress() instead of user.getAddress(), use filter and findFirst.
     //TODO: to finish this refactoring you need Stream.flatMap, Optional.Map, and Optional.orElse
     public String retrieveFormatedUserAddressByLogin(String login) {
         for (User user : users) {
