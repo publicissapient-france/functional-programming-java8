@@ -41,11 +41,11 @@ public class FileUtils {
 
     //TODO:replace by Files.walk and remove visitor. Use Optional.orElseThrow for throw FileNotFoundException
     public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
-        Path rootDictory = Paths.get(path);
+        Path rootDirectory = Paths.get(path);
 
         SearchVisitor searchVisitor = new SearchVisitor(fileName);
 
-        Files.walkFileTree(rootDictory, searchVisitor);
+        Files.walkFileTree(rootDirectory, searchVisitor);
         Path fileFound = searchVisitor.fileFound;
         if (fileFound == null) {
             throw new FileNotFoundException();
