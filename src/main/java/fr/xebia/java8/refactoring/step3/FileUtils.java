@@ -35,9 +35,9 @@ public class FileUtils {
 
     //TODO:replace by Files.walk and remove visitor
     public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
-        Path rootDictory = Paths.get(path);
+        Path rootDirectory = Paths.get(path);
 
-        return Files.walk(rootDictory, FileVisitOption.FOLLOW_LINKS)
+        return Files.walk(rootDirectory, FileVisitOption.FOLLOW_LINKS)
                 .filter(currentPath -> currentPath.getFileName().toString().equals(fileName))
                 .findFirst().orElseThrow(FileNotFoundException::new);
     }
