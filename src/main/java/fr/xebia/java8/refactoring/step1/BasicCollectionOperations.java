@@ -27,7 +27,7 @@ public class BasicCollectionOperations {
         FIBONACCI_CACHE.put(2, 1L);
     }
 
-    //TODO :Refactor with forEach method
+    //TODO: Refactor with forEach method
     public static void resetPassword(List<User> users) {
 
         for (User user : users) {
@@ -35,7 +35,7 @@ public class BasicCollectionOperations {
         }
     }
 
-    //TODO :Refactor with removeIf method and use method reference
+    //TODO: Refactor with removeIf method and use method reference
     public static void removeExpiredUsers(List<User> users) {
         List<User> usersToRemove = new ArrayList<>();
 
@@ -48,7 +48,7 @@ public class BasicCollectionOperations {
         users.removeAll(usersToRemove);
     }
 
-    //TODO :Refactor with replaceAll method
+    //TODO: Refactor with replaceAll method
     public static void addOneDayToDates(List<LocalDate> localDates) {
 
         for (int i = 0; i < localDates.size(); i++) {
@@ -59,7 +59,7 @@ public class BasicCollectionOperations {
         }
     }
 
-    //TODO :Refactor Map computation with merge method and you can eventually change loop by forEach method
+    //TODO: Refactor Map computation with merge method and eventually replace the for loop with the forEach method
     //TODO Use the sum method on Integer
     public static Map<String, Integer> countWord(List<String> words) {
         Map<String, Integer> count = new HashMap<>();
@@ -76,7 +76,7 @@ public class BasicCollectionOperations {
         return count;
     }
 
-    //TODO : use getOrDefault Map method
+    //TODO: use getOrDefault Map method
     public static BigDecimal exchangeRateWithEuro(String isoCode) {
         BigDecimal currencyByIsocode = CURRENCIES_BY_ISOCODE.get(isoCode);
         if (currencyByIsocode != null) {
@@ -90,9 +90,9 @@ public class BasicCollectionOperations {
         List<Long> result = new ArrayList<>(expectedNumberResult);
 
         for (int i = 1; i <= expectedNumberResult; i++) {
-
             result.add(fibonacciComputation(i));
         }
+
         return result;
     }
 
