@@ -39,14 +39,14 @@ public class DateUtilsTest {
     }
 
     private int computeAgeFor(String birthday, String currentDate) {
-        //TODO:Change parseDateJava7 to parseDateJava8 for switch to localDate
+        //TODO:Change parseDateJava7 to parseDateJava8 while migrating to LocalDate
 
         return DateUtils.age(parseDateJava7(birthday), parseDateJava7(currentDate));
     }
 
     @Test
     public void should_compute_day_with_time() {
-        //TODO:Change parseDateJava7 to parseDateJava8 for switch to localDate
+        //TODO:Change parseDateJava7 to parseDateJava8 while migrating to LocalDate
         assertThat(DateUtils.dayDateWithTime(parseDateJava7("2013-07-08"), 15, 12, 3))
                 .isInSameDayAs("2013-07-08")
                 .isWithinHourOfDay(15)
@@ -56,7 +56,7 @@ public class DateUtilsTest {
 
     @Test
     public void should_add_duration() {
-        //TODO:Change parseDateTimeJava7 to parseDateTimeJava8 for switch to localDate
+        //TODO:Change parseDateTimeJava7 to parseDateTimeJava8 while migrating to LocalDate
         assertThat(DateUtils.addDuration(parseDateTimeJava7("2014-01-27T12:05:10"), 162))
                 .isInSameDayAs("2014-01-27")
                 .isWithinHourOfDay(14)
@@ -66,7 +66,7 @@ public class DateUtilsTest {
 
     @Test
     public void should_return_true_when_days_are_equals() {
-        //TODO:Change parseDateTimeJava7 to parseDateTimeJava8 for switch to localDate
+        //TODO:Change parseDateTimeJava7 to parseDateTimeJava8 while migrating to LocalDate
         assertThat(DateUtils.dayAreEquals(parseDateTimeJava7("2015-01-27T12:05:10"), parseDateTimeJava7("2014-01-27T20:05:10"))).isFalse();
         assertThat(DateUtils.dayAreEquals(parseDateTimeJava7("2014-01-27T12:05:10"), parseDateTimeJava7("2014-01-28T12:05:10"))).isFalse();
         assertThat(DateUtils.dayAreEquals(parseDateTimeJava7("2014-01-27T12:05:10"), parseDateTimeJava7("2014-01-27T20:05:10"))).isTrue();

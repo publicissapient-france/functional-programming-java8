@@ -10,7 +10,7 @@ import java.util.TimeZone;
 public class DateUtils {
 
     /**
-     * Parse String date without times
+     * Parse String date without time
      *
      * @param date format  dd/MM/yyyy
      * @return
@@ -18,7 +18,7 @@ public class DateUtils {
     public static Date parseDate(String date) {
         //TODO: Replace with LocalDate and DateTimeFormatter
 
-        try {  //SimpleDateFormat not thread safe must create new formater for each request
+        try {  //SimpleDateFormat is not thread safe, must create a new formatter for each request
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             return format.parse(date);
         } catch (ParseException e) {
