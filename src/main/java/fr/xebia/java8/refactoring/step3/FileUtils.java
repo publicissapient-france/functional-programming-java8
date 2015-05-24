@@ -39,8 +39,8 @@ public class FileUtils {
         }
     }
 
-    //TODO:replace by Files.walk and remove visitor. Use Optional.orElseThrow for throw FileNotFoundException
-    public static Path findRecursivelyFileByName(String path, String fileName) throws IOException {
+    //TODO:replace by Files.walk and remove visitor. Use Optional.orElseThrow to throw FileNotFoundException
+    public static Path findFileRecursivelyByName(String path, String fileName) throws IOException {
         Path rootDirectory = Paths.get(path);
 
         SearchVisitor searchVisitor = new SearchVisitor(fileName);
@@ -80,8 +80,8 @@ public class FileUtils {
         user.withLogin(columns[3])
                 .withPassword(columns[4])
                 .withExpireDate(LocalDate.parse(columns[5], DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.")))
-                .withRole(Role.valueOf(columns[6]))
-        ;
+                .withRole(Role.valueOf(columns[6]));
+
         if (columns.length > 8) {
             user.withAddress(new Address(columns[7], columns[8], columns[9]));
         }

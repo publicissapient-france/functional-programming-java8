@@ -31,14 +31,14 @@ public class FileUtilsTest {
 
     @Test
     public void should_find_file_path_by_filename() throws IOException {
-        Path fileWithName = FileUtils.findRecursivelyFileByName(".", "FileUtils.java");
+        Path fileWithName = FileUtils.findFileRecursivelyByName(".", "FileUtils.java");
 
         assertThat(fileWithName).isEqualTo(Paths.get("./src/main/java/fr/xebia/java8/refactoring/step3/FileUtils.java"));
     }
 
     @Test(expected = FileNotFoundException.class)
     public void should_not_find_file_path_by_filename_when_file_not_exist() throws IOException {
-        Path fileWithName = FileUtils.findRecursivelyFileByName(".", "UserParser123.java");
+        Path fileWithName = FileUtils.findFileRecursivelyByName(".", "UserParser123.java");
 
         assertThat(fileWithName).isNull();
     }

@@ -25,9 +25,8 @@ public class NumberUtils {
      * @param seed
      * @return
      */
-    //TODO:Use Random.ints method
+    //TODO: Use Random.ints method
     public static int[] generateRandom(int number, @Nullable Long seed) {
-
         int[] randomValues = new int[number];
 
         Random random = getRandom(seed);
@@ -39,10 +38,8 @@ public class NumberUtils {
         return randomValues;
     }
 
-    //TODO: To transform an array to stream, use Arrays.stream. Use also Collectors.partitioningBy.
+    //TODO: To transform an array to a stream, use Arrays.stream. You'll also need Collectors.partitioningBy
     public static Map<Boolean, List<Integer>> splitEvenAndOddNumber(int[] numbers) {
-
-
         List<Integer> evenNumber = new ArrayList<>();
         List<Integer> oddNumber = new ArrayList<>();
 
@@ -61,21 +58,22 @@ public class NumberUtils {
         return result;
     }
 
-    //TODO: replace for by stream generation with IntStream.rangeClosed. You need also mapToLong and mapToObj
+    //TODO: Replace for loop with stream generation using IntStream.rangeClosed
+    //TODO: You will also need mapToLong and mapToObj
     public static List<Long> fibonacci(int expectedNumberResult) {
         List<Long> result = new ArrayList<>(expectedNumberResult);
 
         for (int i = 1; i <= expectedNumberResult; i++) {
-
             result.add(fibonacciComputation(i));
         }
+
         return result;
     }
 
     /**
-     * @return Infinite stream who return each next number of fibonacci sequence
+     * @return Infinite stream who returns the fibonacci sequence
      */
-    //TODO: This method is not implemented. Implement this with Stream.generate, update corresponding test for check your implementation.
+    //TODO: This method is not implemented. Implement this with Stream.generate, update the corresponding test to check your implementation
     public static Stream<Long> fibonacciStream() {
         throw new NotImplementedException();
     }
