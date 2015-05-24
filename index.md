@@ -17,17 +17,17 @@ En cas de bloquage, vous pouvez cliquer sur les boutons <button  type="button" c
 * Avoir le jdk 8  d'installé ([http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
 * Avoir git
 * Avoir maven
-* cloner le repository git clone [https://github.com/xebia-france/functional-programming-java8.git](https://github.com/xebia-france/functional-programming-java8.git)
-* Si besoin régler votre IDE afin que le projet soit configuré avec la compatibilité java 8
+* Cloner le repository git : git clone [https://github.com/xebia-france/functional-programming-java8.git](https://github.com/xebia-france/functional-programming-java8.git)
+* Si besoin, régler votre IDE afin que le projet soit configuré avec la compatibilité java 8
 
 Des clefs USB sont disponibles avec ces pre-requis.
 
 -----------------
 
-### (Optionnel) Discovery new lambda syntax
+### (Optionnel) Lambda syntax discovery
  Cette première étape permet de découvrir la syntaxe de base des fonctions en Java 8. Si vous êtes déja à l'aise avec les **'Lambda'**, **'Static & Instance method reference'**, et **'Constructor reference'** vous pouvez passer directement à **[l'Etape 1](#step1)**.
 
- * Se connecter à la branche step 0 :
+ * Basculer sur la branche step0 :
      `git checkout step0`
 
  * Ouvrir la classe **FunctionGenerator**. Cette classe permet de retourner des fonctions mais elle a été codée en Java 7, avec des classes anonymes. Modifier la pour utiliser la nouvelle syntaxe Java 8 des lambdas.
@@ -41,25 +41,25 @@ Par exemple la classe **Function** (Disponible avec la librairie guava en Java <
  Avec la syntaxe lambda une fonction prenant une chaîne de caractêre en entrée et qui
 retourne sa taille peut s'écrire :
 {% highlight java %}
-//Lambda version longue (input) -> { code}
+//Lambda version longue (input) -> {code}
 Function<String,Integer> myFunction = (String input) -> {return input.length();};
 // le compilateur déduit le type des paramètres d'entrées donc pas nécéssaire
 Function<String,Integer> myFunction = (input) -> {return input.length();};
-// un seul argument en entrée pas besoin de parenthèse
+// un seul argument en entrée pas besoin de parenthèses
 Function<String,Integer> myFunction = input -> {return input.length();};
-// une seule instruction on peut supprimer les accolades et le return.
+// une seule instruction on peut supprimer les accolades et le return
 Function<String,Integer> myFunction = input -> input.length();
 {% endhighlight %}
 
 
 On peut donc utiliser cette syntaxe mais cerise sur le gâteau on peut faire référence
-directement à la méthode length() avec la notation équivalente :
+directement à la méthode length() avec la notation sémantiquement équivalente :
 {% highlight java %}
 // Instance Method reference
 Function<String,Integer> myFunction = String::length; //Equivalent input -> input.length()
 {% endhighlight %}
 
-De  même des syntaxes équivalentes existent pour :
+D'autres exemples d'expressions équivalentes :
 {% highlight java %}
 // Static method reference
 IntFunction myFunction = Math::abs; //Equivalent input -> Math.abs(input)
@@ -80,33 +80,33 @@ Function<String,StringBuilder> myFunc = StringBuilder::new; //Equivalent input -
 ### <a name="step1"></a>1. Basic collection enhancement
  **Refactorer le code java 7 en Java 8**, sans utiliser stream().
 
- * Se connecter à la branche step1 :
+ * Basculer sur la branche step1 :
      `git checkout step1`
  * Modifier les méthodes de la classe **BasicCollectionOperations** : Utiliser les méthodes ajoutées dans l'api Collection sans passer par les streams.
 
  <blockquote class = 'help' markdown="1">
-  * La méthode **foreach** de List prend en paramètre une fonction de type **Consumer** qui attend en entrée un object mais ne return aucune valeur.  
+  * La méthode **foreach** de List prend en paramètre une fonction de type **Consumer** qui attend en entrée un objet mais ne returne aucune valeur.  
   Exemple :
   {% highlight java %} val -> System.out.println(val)
   {% endhighlight %}  
 
-  * La méthode **removeIf** de List prend en paramètre une fonction de type **Predicate** qui attend en entrée un object et retourne un boolean.
+  * La méthode **removeIf** de List prend en paramètre une fonction de type **Predicate** qui attend en entrée un objet et retourne un boolean.
   Exemple :
-  {% highlight java %} val -> val !=null
+  {% highlight java %} val -> val != null
   {% endhighlight %}  
 
-  * La méthode **replaceAll** de List prend en paramètre une fonction de type **UnaryOperator** qui attend en entrée un object et retourne un object du même type.
+  * La méthode **replaceAll** de List prend en paramètre une fonction de type **UnaryOperator** qui attend en entrée un objet et retourne un objet du même type.
   Exemple avec val un Integer:
   {% highlight java %} val -> val + 1
   {% endhighlight %}  
 
-  * La méthode **merge** de map prend en paramètre une **clef**, une **valeur** et une **Bifonction**, une fonction qui prend en entrée 2 objects et renvoie un object.
+  * La méthode **merge** de map prend en paramètre une **clef**, une **valeur** et une **BiFonction**, une fonction qui prend en entrée 2 objets et renvoie un objet.
     * Si la map ne contient pas la **clef**, la valeur est ajoutée à la map associée à cette **clef**.
-    * Si la map contient la clef, on remplace la valeur associée par une nouvelle calculée avec la **BiFunction** appliquée sur l'ancienne **valeur** et la nouvelle **valeur**. Exemple :
+    * Si la map contient la **clef**, on remplace la valeur associée par une nouvelle calculée avec la **BiFunction** appliquée sur la **valeur** présente et la **valeur** en paramètre. Exemple :
     {% highlight java %} values.merge(key, word, (words, newWord) -> words + ", " + newWord);
     {% endhighlight %}  
 
-  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déjà, **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas la fonction est appelée pour générer la **valeur** qui est stockée dans la map et ensuite retournée.
+  * La méthode **computeIfAbsent** prend en entrée une **clef** et une **Function**. Si la **clef** existe déjà, **computeIfAbsent** retourne la valeur existante. Si elle n'existe pas, la fonction est appelée pour générer la **valeur** qui sera stockée dans la map et ensuite retournée.
 
  </blockquote>
 
@@ -124,9 +124,9 @@ Avant de passer à la suite, sauvegardez votre solution : `git commit -a -m'step
 ### 2 Collection Stream
  **Refactorer le code java 7 en Java 8**
 
- * Se connecter à la branche step2 :
+ * Basculer sur la branche step2 :
       `git checkout step2`
- * Refactorer la class **UserService.java** en ustilisant les **streams**
+ * Refactorer la class **UserService** en utilisant les **streams**
 
  <blockquote class = 'help' markdown="1">
  * Pour utiliser les streams :
@@ -157,8 +157,8 @@ Le collector peut être un collector prédéfini dans la classe Collectors ou so
 {% endhighlight %}
   * **Collectors.groupingBy** permet de retourner une Map avec les éléments groupés en fonction d'une clef.
 Dans sa version la plus simple groupingBy attend en entrée une fonction permettant de déterminer la clef de regroupement
-  * **Collectors.toMap** retourne une map également mais ne regroupe par les objects avec la même clé dans un autre object. La clef doit donc être unique. toMap dans sa version la plus simple attends deux fonctions en paramètre une pour déterminer la clef, l'autre pour déterminer la valeur.
-  * **Collectors.summarizingInt** permet de renvoyer un object **IntSummaryStatistics** contenant des statistiques sur une valeur numérique liées aux éléments du stream. **summarizingInt** attend une fonction permettant d'extraire cette valeur numérique.
+  * **Collectors.toMap** retourne une map également mais ne regroupe par les objet avec la même clé dans un autre objet. La clef doit donc être unique. toMap dans sa version la plus simple attends deux fonctions en paramètre une pour déterminer la clef, l'autre pour déterminer la valeur.
+  * **Collectors.summarizingInt** permet de renvoyer un objet **IntSummaryStatistics** contenant des statistiques sur une valeur numérique liées aux éléments du stream. **summarizingInt** attend une fonction permettant d'extraire cette valeur numérique.
 
 
  </blockquote>
@@ -174,12 +174,12 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 
   -----------------
 
-### 3 Others Stream
+### 3 Other Streams
  **Refactorer le code java 7 en Java 8**
 
- * Se connecter à la branche step3 :
+ * Basculer sur la branche step3 :
       `git checkout step3`
- * Refactorer les classes **FileUtils.java** et **NumberUtils.java**
+ * Refactorer les classes **FileUtils** et **NumberUtils**
 
  <blockquote class = 'help' markdown="1">
  * **Files.lines** permet de renvoyer un stream où chaque élément représente une ligne dans le fichier et cela de manière bufferisée. La lecture effective de la ligne ne se fera que lors du traitement réalisé par l'opération terminale.
@@ -187,9 +187,9 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
  * La méthode **Files.walk** permet de lire récursivement une hérarchie de répertoire de manière 'Lazy'.
  * La méthode **ints** de Random permet de renvoyer un stream infini où chaque itération sur un élément va renvoyer une chiffre aléatoire. Utiliser limit pour les streams infinis.
  * La méthode **Arrays.stream** permet de générer un stream à partir d'un tableau.
- * Pour les types primitifs, existent des streams particulier. Exemple **IntStream** pour des objets de type int. Pour passer d'un stream de primitifs à un stream d'objet il faut utiliser la méthode **mapToObj**. Pour passer d'un stream vers un stream de primitifs il faut utiliser **mapToLong**, **mapToInt** ..etc
+ * Il existe des streams particulier pour les types primitifs. Exemple : **IntStream** pour le type primitif int. Pour passer d'un stream de primitifs à un stream d'objet il faut utiliser la méthode **mapToObj**. Pour passer d'un stream vers un stream de primitifs il faut utiliser **mapToLong**, **mapToInt**, etc.
  * La méthode **Collectors.partitioningBy** permet de partionner le contenu d'un stream en fonction d'un **Predicate**. La partition est effectuée en retournant une `Map<Boolean,List<Element>>` avec les éléments qui vérifient le prédicat associés à la clé Boolean.TRUE et les autres avec la clef Boolean.FALSE.
- * La méthode IntStream.rangeClosed(min,max) permet de retourner un stream de int contenant les valeurs de 'min' à 'max'.
+ * La méthode **IntStream.rangeClosed(min,max)** permet de retourner un stream de int contenant les valeurs de 'min' à 'max'.
  * Il est possible de générer son propre Stream en utilisant la méthode **Stream.generate(Supplier supplier)**
  </blockquote>
 
@@ -209,14 +209,14 @@ Dans sa version la plus simple groupingBy attend en entrée une fonction permett
 
 **Refactorer le code java 7 en Java 8**
 
-* Se connecter à la branche step4 :
+* Basculer sur la branche step4 :
     `git checkout step4`
-* Modifier les méthodes de la classe DateUtils : Remplacer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
+* Modifier les méthodes de la classe **DateUtils** : Remplacer le type **Date** par **LocalDate** (Date sans heure) ou **LocalDateTime** (Date avec heure) en fonction du besoin.
 * Utiliser les méthodes de l'api **java.time** pour refactorer ce code.
 * Attention pour cette étape il faut dans certains cas modifier également les tests car la signature de la méthode change. Chaque changement de test est marqué d'un TODO.
 
 <blockquote class = 'help' markdown="1">
-* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/time ont des méthodes pour passer d'un format vers un autre, exemple :
+* **LocalDate** représente une date  sans les heures, et **LocalDateTime** une date avec les heures. Ces 2 objets sont sans notion de TimeZone. Tous les nouveaux formats de Date/Time ont des méthodes pour passer d'un format vers un autre, exemple :
 {% highlight java %}
 LocalTime time = LocalTime.of(10, 30); // 10h30
 LocalDate date = LocalDate.of(2015, 3, 10); // 10 Mars 2015
@@ -224,12 +224,12 @@ LocalDateTime dateTime = LocalDateTime.of(date, time); // 10 Mars 2015 10h30
 {% endhighlight %}
 * **LocalDate.parse** et **LocalDateTime.parse** permettent de parser une date sous forme de chaîne de caractère et formatter cette dernière avec la méthode **ofPattern** de la classe **DateFormatter**.
 * La méthode **Period.between** permet de renvoyer un objet représentant une période entre deux **LocalDate**.
-* **LocalDateTime** simplifie la manipulation des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes** ou **minusMinutes**, etc.
+* **LocalDateTime** simplifie la manipulation des dates. En effet il est possible d'appeler directement les méthodes **plusMinutes**, **minusMinutes**, etc.
 * **ZonedDateTime** représente une date avec l'heure et une timezone. Exemple :
 {% highlight java %}//Le 20/12/2014 11:30:00 Europe/Paris
 ZonedDateTime zonedDateTime = ZonedDateTime.of(2014, 12, 20, 11, 30, 0, 0, ZoneId.of("Europe/Paris"));
 {% endhighlight %}
-* Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent d'appliquer ou de convertir des timezones d'object DateTime.
+* Pour gérer les TimeZone, les méthodes **atZone** et **withZoneSameInstant** permettent d'appliquer ou de convertir des timezones d'objet DateTime.
 </blockquote>
 
 Plus d'infos :
@@ -246,7 +246,7 @@ Plus d'infos :
 
  **Refactorer le code java 7 en Java 8**
 
- * Se connecter à la branche step5 :
+ * Basculer sur la branche step5 :
  `git checkout step5`
  * MerchantService effectue des appels vers ProductRepository et StockRepository. Ces appels étant long, l'implémentation les effectue de manière asynchrone. Refactorer ses appels à l'aide de la classe **CompletableFuture** de Java 8 afin mieux gérer l'ordonnancement des taches asynchrones.
 
@@ -262,13 +262,13 @@ CompletableFuture<User> user = CompletableFuture.supplyAsync(() ->
  La syntaxe est la suivante  : `CompletableFuture<Type> task3 = task1.thenCombine(task2,BiFunction)` avec **BiFunction** une fonction qui prend le retour de la tâche 1 et le retour de la tâche 2 et qui retourne un 3e type d'object.
  * La méthode `thenAcceptAsync` permet d'enchaîner à la suite d'un premier appel asynchrone un autre appel asynchrone.
  * La méthode `CompletableFuture.allOf` permet de créér un **CompletableFuture** à partir d'un tableau de **CompletableFuture**. Ce **CompletableFuture** sera considéré comme terminé lorsque toutes ces tâches seront terminés.
- * La méthode **thenAccept** de **CompletableFuture** permet de passer une callback à un **CompletableFuture** qui sera exécutée à la fin de cette tâche. Exemple :
+ * La méthode **thenAccept** de **CompletableFuture** permet de passer un callback à un **CompletableFuture** qui sera exécuté à la fin de cette dernière. Exemple :
 {% highlight java %}
 CompletableFuture.supplyAsync(() ->  
  userService.findUserById(userId))
                .thenAccept(user -> log.info("user " + user + " found"));
 {% endhighlight %}
-Dans cet exemple, les informations de log seront affichées lorsque la méthode findUserById aura terminée son exécution.
+Dans cet exemple, les informations de l'utilisateur seront loggués lorsque la méthode findUserById aura terminée son exécution.
  </blockquote>
 
  Plus d'infos :
