@@ -17,7 +17,7 @@ public class UserService {
         users = UserParser.fromCsv("users.csv");
     }
 
-    //TODO: convert users List to stream and use filter and count
+    //TODO: convert users list to stream and use filter and count
     public long countUserWithRole(Role role) {
         long count = 0;
         for (User user : users) {
@@ -40,9 +40,9 @@ public class UserService {
         return false;
     }
 
-    //TODO: user user.getOptionalAddress() instead of user.getAddress(), use filter and findFirst.
+    //TODO: use user.getOptionalAddress() instead of user.getAddress(), use filter and findFirst
     //TODO: to finish this refactoring you need Optional.flatMap, Optional.Map, and Optional.orElse
-    public String retrieveFormatedUserAddressByLogin(String login) {
+    public String retrieveFormattedUserAddressByLogin(String login) {
         for (User user : users) {
             if (user.getLogin().equals(login)) {
                 if (user.getAddress() != null) {
@@ -57,8 +57,8 @@ public class UserService {
     /**
      * @return first 50 users ordered by first name and last name
      */
-    //TODO: use sorted and replace specific comparator with Comparator.comparing static methods.
-    //TODO: use limit method and collect with Collectors for generate new List
+    //TODO: use sorted and replace specific comparator with Comparator.comparing static methods
+    //TODO: use limit method and collect with Collectors to generate a new List
     public List<User> firstFiftyUsers() {
         List<User> usersOrdered = new ArrayList<>(users.size());
         usersOrdered.addAll(users);
@@ -71,12 +71,12 @@ public class UserService {
     private static class UserComparator implements Comparator<User> {
 
         public int compare(User userLeft, User userRight) {
-            int lastNameComparaison = userLeft.getLastname().compareTo(userRight.getLastname());
-            if (lastNameComparaison == 0) {
+            int lastNameComparison = userLeft.getLastname().compareTo(userRight.getLastname());
+            if (lastNameComparison == 0) {
                 return userLeft.getFirstname().compareTo(userRight.getFirstname());
             } else {
 
-                return lastNameComparaison;
+                return lastNameComparison;
             }
         }
     }
